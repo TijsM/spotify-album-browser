@@ -7,8 +7,16 @@
       .split("#access_token=")[1]
       .split("&token_type")[0];
     localStorage.setItem("bearer-token", bearer);
+    if (bearer) {
+      window.history.pushState("", "", "/");
+    }
   }
 </script>
-
 <hr />
+
+{#if localStorage.getItem('bearer-token')}
+<div>Your are signed in!</div>
+
+{:else}
 <a href="{authorize_link}">authenticate with spotify</a>
+{/if}

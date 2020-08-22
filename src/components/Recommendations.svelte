@@ -1,9 +1,7 @@
 <script>
-	import Authorize from './Authorize.svelte'
+  import Authorize from './Authorize.svelte'
 </script>
+<Authorize/>
 
-<hr>
-<span>
-  We here
-  </span>
-  <Authorize/>
+
+
