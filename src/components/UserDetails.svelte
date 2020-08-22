@@ -22,3 +22,7 @@
 
   getUserData();
 </script>
+
+
+Welcome {localStorage.getItem('user-name')}
+<br>

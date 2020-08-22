@@ -1,10 +1,23 @@
 <script>
 	import AppTitle from './components/Header.svelte'
 	import Recommendations from './components/Recommendations.svelte'
+	import Authorize from './components/Authorize.svelte'
+	import UserProfile from './components/userDetails.svelte'
+
 </script>
 <main>
-	<AppTitle/>
-	<Recommendations/>
+<AppTitle/>
+
+{#if localStorage.getItem('bearer-token')}
+<div>Your are signed in!</div>
+
+{:else}
+<Authorize/>
+{/if}
+
+<UserProfile/>
+
+<Recommendations/>
 </main>
 
 <style>

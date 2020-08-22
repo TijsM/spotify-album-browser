@@ -9,14 +9,10 @@
     localStorage.setItem("bearer-token", bearer);
     if (bearer) {
       window.history.pushState("", "", "/");
+      window.location.reload();
     }
   }
 </script>
 <hr />
 
-{#if localStorage.getItem('bearer-token')}
-<div>Your are signed in!</div>
-
-{:else}
 <a href="{authorize_link}">authenticate with spotify</a>
-{/if}
