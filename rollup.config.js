@@ -3,12 +3,15 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
+import replace from '@rollup/plugin-replace';
+import {config} from 'dotenv';
+
 
 const production = !process.env.ROLLUP_WATCH;
 
 function serve() {
 	let server;
-	
+
 	function toExit() {
 		if (server) server.kill(0);
 	}
@@ -45,6 +48,17 @@ export default {
 				css.write('public/build/bundle.css');
 			}
 		}),
+
+		//Using the .env file
+		replace({
+      // stringify the object
+      __myapp: JSON.stringify({
+        env: {
+          isProd: production,
+          ...config().parsed // attached the .env config
+        }
+      }),
+    }),
 
 		// If you have external dependencies installed from
 		// npm, you'll most likely need these plugins. In
