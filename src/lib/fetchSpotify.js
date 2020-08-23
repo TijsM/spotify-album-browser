@@ -14,7 +14,7 @@ export const getUserData = async () => {
 
 };
 
-export const getAnAlbumFromAnArtist = async (artistId) => {
+export const getAlbumsFromArtist = async (artistId) => {
   const artistData = await fetch(
     `https://api.spotify.com/v1/artists/${artistId}/albums`,
     {
