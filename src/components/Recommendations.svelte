@@ -22,5 +22,3 @@
 
   getData();
 </script>
-
-hi!

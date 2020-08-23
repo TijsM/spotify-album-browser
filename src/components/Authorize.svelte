@@ -13,6 +13,23 @@
     }
   }
 </script>
-<hr />
 
-<a href="{authorize_link}">authenticate with spotify</a>
+
+<div>
+  <a href="{authorize_link}">Log in with spotify</a>
+</div>
+
+<style>
+  div{
+    background-color: #1DB954;
+    padding: 10px;
+    max-width: 300px;
+    margin: auto;
+    border-radius: 25px;
+  }
+  a {
+    color: white;
+    text-decoration: none;
+
+  }
+</style>

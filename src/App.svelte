@@ -15,21 +15,30 @@
 <Authorize/>
 {/if}
 
-<UserProfile/>
+<!-- <UserProfile/> -->
 <Recommendations/>
 </main>
 
 <style>
-	main {
-		text-align: center;
-		padding: 1em;
-		margin: 0 auto;
+	:global(body){
+		padding: 0px;
+		height: 100vh;
+		width: 100vw;
+		background-color: #191414;
 	}
-
 	 :global(h1) {
-		color: #ff3e00;
+		color: #1DB954;
 		text-transform: uppercase;
 		font-size: 4em;
 		font-weight: 100;
+	}
+
+	:global(div){
+		color: white;
+	}
+
+	main {
+		text-align: center;
+		padding: 1em;
 	}
 </style>
