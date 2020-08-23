@@ -1,5 +1,5 @@
 <script>
-  const authorize_link = `https://accounts.spotify.com/authorize?client_id=${__myapp.env.SPOTIFY_CLIENT_ID}&response_type=token&redirect_uri=http://localhost:5000/&scope=user-read-private%20user-read-email`;
+  const authorize_link = `https://accounts.spotify.com/authorize?client_id=${__myapp.env.SPOTIFY_CLIENT_ID}&response_type=token&redirect_uri=http://localhost:5000/&scope=user-read-private%20user-read-email%20user-library-read`;
 
   const params = new URLSearchParams(window.location.href);
   if (window.location.href.split("#access_token=")[1]) {
