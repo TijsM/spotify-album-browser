@@ -3,6 +3,7 @@
 	import Albums from './components/Albums.svelte'
 	import Authorize from './components/Authorize.svelte'
 	import UserProfile from './components/userDetails.svelte'
+	import Recommendations from './components/recommendations.svelte'
 
 </script>
 <main>
@@ -16,8 +17,8 @@
 {/if}
 
 <UserProfile/>
-
 <Albums/>
+<Recommendations/>
 </main>
 
 <style>

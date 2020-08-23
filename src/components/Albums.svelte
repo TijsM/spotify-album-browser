@@ -17,7 +17,6 @@
     data.items.forEach(album => {
       albums.push(album.album)
       albums = [...albums]
-      console.log(album.album)
     })
 
     //recursivly get all albums
@@ -27,7 +26,7 @@
       getUserAlbums();
     }
     else{
-      localStorage.setIt('albums', albums)
+      localStorage.setItem('albums', JSON.stringify(albums))
     }
   };
   getUserAlbums();
@@ -49,7 +48,3 @@
 {total}
 {fetched}
 {albums.length}
-
-
-
-recommendations will come here
