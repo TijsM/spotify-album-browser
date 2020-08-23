@@ -24,13 +24,11 @@
 
     getAlbumsFromArtist(relatedArtists.artists[randomRelatedArtistIndex].id).then((relAlbum) => {
       const randomAlbumIndex = Math.floor(Math.random() * relAlbum.items.length)
-      console.log('index', randomAlbumIndex)
       A_RANDOM_ALBUM = relAlbum.items[randomAlbumIndex]
 
       const tempArray = randomSelectionOfAlbums;
       tempArray.push(relAlbum.items[randomAlbumIndex])
       randomSelectionOfAlbums = [...tempArray]
-      console.log('fml', randomSelectionOfAlbums)
     });
   };
 

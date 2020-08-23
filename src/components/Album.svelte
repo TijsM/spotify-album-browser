@@ -1,10 +1,6 @@
 <script>
   import { onMount, afterUpdate } from "svelte";
   export let albumData;
-
-  afterUpdate(() => {
-    console.log("after update name:", albumData);
-  });
 </script>
 
 {#if albumData}
