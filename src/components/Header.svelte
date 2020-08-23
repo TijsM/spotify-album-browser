@@ -1,2 +1,13 @@
-<h1>Spotify recommendation Engine</h1>
+{#if localStorage.getItem("bearer-token")}
+  <h1>let's go!</h1>
+{:else}
+  <h1>Spotify recommendation Engine</h1>
+{/if}
 
+<span>By taking a look at your saved albums we will sugest some alternatives.</span>
+
+<style>
+  span{
+    color: rgb(122, 122, 122);
+  }
+</style>
