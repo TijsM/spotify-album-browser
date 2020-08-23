@@ -55,10 +55,13 @@ export const getAlbumsFromUser = async () => {
   );
 
   const data = await userAlbums.json();
-  data?.items?.forEach((album) => {
-    albums.push(album.album);
-    albums = [...albums];
-  });
+  if(data & data.itams){
+    data.items.forEach((album) => {
+      albums.push(album.album);
+      albums = [...albums];
+    });
+  }
+
 
   //recursivly get all albums
   fetched += 50;
