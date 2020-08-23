@@ -1,17 +1,13 @@
 <script>
   import { onMount, afterUpdate } from "svelte";
   export let albumData;
-  export let loaded;
 
   afterUpdate(() => {
     console.log("after update name:", albumData);
   });
 
-  console.log("loaded", loaded);
-  console.log("albumData", albumData);
 </script>
 
-<!-- loaded: {loaded} -->
 
 {#if albumData}
 <div class="container">
