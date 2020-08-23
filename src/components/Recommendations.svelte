@@ -1,7 +1,8 @@
 <script>
-  console.log('d')
+  console.log("d");
   const token = localStorage.getItem("bearer-token");
   const albums = JSON.parse(localStorage.getItem("albums"));
+  let relatedArtists;
 
   const getRelatedArtists = async (artistId) => {
     const artistData = await fetch(
@@ -13,11 +14,29 @@
       }
     );
 
-    const data = await artistData.json();
-    console.log("data", data);
+    relatedArtists = await artistData.json();
+    console.log("relatedArtists", relatedArtists);
   };
 
-  getRelatedArtists(albums[0].artists[0].id)
+  const getAnAlbumFromAnArtist = async (artistId) => {
+    console.log('here')
+    const artistData = await fetch(
+      `https://api.spotify.com/v1/artists/${artistId}/albums`,
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+
+      
+    console.log("a related artist", await artistData.json());
+  };
+
+  getRelatedArtists(albums[2].artists[0].id).then(er => {
+    getAnAlbumFromAnArtist(relatedArtists.artists[0].id);
+  });
+
 </script>
 
 hi!
