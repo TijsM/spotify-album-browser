@@ -27,6 +27,7 @@ export const getAnAlbumFromAnArtist = async (artistId) => {
   return await artistData.json();
 };
 
+
 export const getRelatedArtists = async (artistId) => {
   const artistData = await fetch(
     `https://api.spotify.com/v1/artists/${artistId}/related-artists`,

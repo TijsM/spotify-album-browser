@@ -1,6 +1,5 @@
 <script>
 	import AppTitle from './components/Header.svelte'
-	import Albums from './components/Albums.svelte'
 	import Authorize from './components/Authorize.svelte'
 	import UserProfile from './components/userDetails.svelte'
 	import Recommendations from './components/Recommendations.svelte'
@@ -17,7 +16,6 @@
 {/if}
 
 <UserProfile/>
-<Albums/>
 <Recommendations/>
 </main>
 
