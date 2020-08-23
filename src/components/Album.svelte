@@ -5,9 +5,7 @@
   afterUpdate(() => {
     console.log("after update name:", albumData);
   });
-
 </script>
-
 
 {#if albumData}
 <div class="container">
@@ -25,9 +23,11 @@
 
 <style>
   .container {
+    flex-shrink: 0;
     width: 80%;
-    max-width: 400px;
+    width: 500px;
     margin: auto;
+    margin: 25px;
   }
 
   img {
@@ -35,11 +35,11 @@
     margin-bottom: 15px;
   }
 
-  .album{
+  .album {
     font-size: 1.4em;
     font-weight: bold;
   }
-  .artist{
+  .artist {
     opacity: 0.8;
   }
   .albumContainer {

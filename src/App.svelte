@@ -18,7 +18,8 @@
 	:global(body){
 		padding: 0px;
 		height: 100vh;
-		width: 100vw;
+		width: 98vw;
+		box-sizing: border-box;
 		background-color: #191414;
 	}
 	 :global(h1) {
@@ -34,6 +35,5 @@
 
 	main {
 		text-align: center;
-		padding: 1em;
 	}
 </style>

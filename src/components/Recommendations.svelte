@@ -38,14 +38,46 @@
     getData();
   }
 
-
 </script>
 
-{#each randomSelectionOfAlbums as album}
-<Album albumData={album} />
-{/each}
+<div class="container">
+  {#each randomSelectionOfAlbums as album}
+  <Album albumData={album} />
+  {/each}
+</div>
 
 
+<style>
+  .container{
+    display: flex;
+    overflow-x: scroll;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  /* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #00000000;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(136, 136, 136, 0.325);
+  border-radius: 10px;
+
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(223, 218, 218);
+}
+
+</style>
 
 
 
