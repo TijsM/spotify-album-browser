@@ -26,6 +26,9 @@
     if(fetched < total){
       getUserAlbums();
     }
+    else{
+      localStorage.setIt('albums', albums)
+    }
   };
   getUserAlbums();
 
@@ -38,8 +41,7 @@
 
 {#each albums as alb}
 <div>
-  title: {alb.name}
-  artist: {alb.artists[0].name}
+  {alb.artists[0].name} : {alb.name}
 </div>
 <hr>
 {/each}

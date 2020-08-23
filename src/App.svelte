@@ -1,6 +1,6 @@
 <script>
 	import AppTitle from './components/Header.svelte'
-	import Recommendations from './components/Recommendations.svelte'
+	import Albums from './components/Albums.svelte'
 	import Authorize from './components/Authorize.svelte'
 	import UserProfile from './components/userDetails.svelte'
 
@@ -17,7 +17,7 @@
 
 <UserProfile/>
 
-<Recommendations/>
+<Albums/>
 </main>
 
 <style>
