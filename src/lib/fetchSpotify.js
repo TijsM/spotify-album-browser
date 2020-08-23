@@ -67,7 +67,6 @@ export const getAlbumsFromUser = async () => {
   if (fetched < total) {
     return getAlbumsFromUser();
   } else {
-    localStorage.setItem("albums", JSON.stringify(albums));
     return albums;
   }
 };

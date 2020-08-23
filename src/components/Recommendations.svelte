@@ -7,44 +7,44 @@
   import Album from './Album.svelte'
 
   let relatedArtists;
-  let albums;
-  let relatedAlbum
-
+  let userAlbums;
   let A_RANDOM_ALBUM
-  let LOADED = false
 
   const AMOUNT_OF_FETCHED_RELATED_ARTISTS = 20
 
-  const RandomSelectionOfAlbums = []
+  let randomSelectionOfAlbums = []
 
   const getData = async () => {
     const _albums = await getAlbumsFromUser();
-    albums = [..._albums];
+    userAlbums = [..._albums];
 
-    const randomAlbumIndex = Math.floor(Math.random()*albums.length)
-    relatedArtists = await getRelatedArtists(albums[randomAlbumIndex].artists[0].id);
+    const randomAlbumIndex = Math.floor(Math.random()*userAlbums.length)
+    relatedArtists = await getRelatedArtists(userAlbums[randomAlbumIndex].artists[0].id);
     const randomRelatedArtistIndex = Math.floor(Math.random()*relatedArtists.artists.length)
 
     getAlbumsFromArtist(relatedArtists.artists[randomRelatedArtistIndex].id).then((relAlbum) => {
-      relatedAlbum = relatedAlbum
-      console.log('relalbum', relAlbum)
+      const randomAlbumIndex = Math.floor(Math.random() * relAlbum.items.length)
+      console.log('index', randomAlbumIndex)
+      A_RANDOM_ALBUM = relAlbum.items[randomAlbumIndex]
 
-      A_RANDOM_ALBUM = relAlbum.items[1]
+      const tempArray = randomSelectionOfAlbums;
+      tempArray.push(relAlbum.items[randomAlbumIndex])
+      randomSelectionOfAlbums = [...tempArray]
+      console.log('fml', randomSelectionOfAlbums)
     });
   };
 
-
-
-
-  getData();
-
+  for (let i = 0; i < 10; i++) {
+    getData();
+  }
 
 
 </script>
 
+{#each randomSelectionOfAlbums as album}
+<Album albumData={album} />
+{/each}
 
-
-<Album albumData={A_RANDOM_ALBUM} loaded={LOADED}/>
 
 
 

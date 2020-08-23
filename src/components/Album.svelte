@@ -32,6 +32,7 @@
 
   img {
     width: 100%;
+    margin-bottom: 15px;
   }
 
   .album{
