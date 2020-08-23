@@ -1,42 +1,22 @@
 <script>
-  console.log("d");
+  import {
+    getAnAlbumFromAnArtist,
+    getRelatedArtists,
+  } from "../lib/fetchSpotify.js";
+
   const token = localStorage.getItem("bearer-token");
   const albums = JSON.parse(localStorage.getItem("albums"));
   let relatedArtists;
 
-  const getRelatedArtists = async (artistId) => {
-    const artistData = await fetch(
-      `https://api.spotify.com/v1/artists/${artistId}/related-artists`,
-      {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      }
-    );
-
-    relatedArtists = await artistData.json();
-    console.log("relatedArtists", relatedArtists);
+  const getData = async () => {
+    relatedArtists = await getRelatedArtists(albums[2].artists[0].id);
+    getAnAlbumFromAnArtist(relatedArtists.artists[0].id).then((res) => {
+      //TODO: store somewhere
+      // console.log("relAlbum", res);
+    });
   };
 
-  const getAnAlbumFromAnArtist = async (artistId) => {
-    console.log('here')
-    const artistData = await fetch(
-      `https://api.spotify.com/v1/artists/${artistId}/albums`,
-      {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      }
-    );
-
-      
-    console.log("a related artist", await artistData.json());
-  };
-
-  getRelatedArtists(albums[2].artists[0].id).then(er => {
-    getAnAlbumFromAnArtist(relatedArtists.artists[0].id);
-  });
-
+  getData();
 </script>
 
 hi!
