@@ -1,5 +1,19 @@
 const token = localStorage.getItem("bearer-token");
 
+export const getUserData = async () => {
+  const userData = await fetch(`https://api.spotify.com/v1/me`, {
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  });
+
+  const user = await userData.json();
+
+  localStorage.setItem('user-name', user.display_name)
+  return user
+
+};
+
 export const getAnAlbumFromAnArtist = async (artistId) => {
   const artistData = await fetch(
     `https://api.spotify.com/v1/artists/${artistId}/albums`,
@@ -10,7 +24,7 @@ export const getAnAlbumFromAnArtist = async (artistId) => {
     }
   );
 
-  return await artistData.json()
+  return await artistData.json();
 };
 
 export const getRelatedArtists = async (artistId) => {
@@ -28,7 +42,7 @@ export const getRelatedArtists = async (artistId) => {
 
 let fetched = 0;
 let albums = [];
-export const getAlbumsFromUser = async() => {
+export const getAlbumsFromUser = async () => {
   let total = 0;
   const userAlbums = await fetch(
     `https://api.spotify.com/v1/me/albums??offset=${fetched}&limit=50`,
@@ -50,10 +64,9 @@ export const getAlbumsFromUser = async() => {
   total = data.total;
 
   if (fetched < total) {
-     return getAlbumsFromUser();
+    return getAlbumsFromUser();
   } else {
     localStorage.setItem("albums", JSON.stringify(albums));
-    return albums
+    return albums;
   }
-
-}
+};
