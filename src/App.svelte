@@ -21,6 +21,7 @@
 		width: 98vw;
 		box-sizing: border-box;
 		background-color: #191414;
+		overflow: hidden;
 	}
 	 :global(h1) {
 		color: #1DB954;
@@ -35,5 +36,6 @@
 
 	main {
 		text-align: center;
+
 	}
 </style>

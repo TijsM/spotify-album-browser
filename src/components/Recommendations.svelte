@@ -28,7 +28,6 @@
 
       const tempArray = randomSelectionOfAlbums;
       tempArray.push(relAlbum.items[randomAlbumIndex])
-      console.log(tempArray)
       randomSelectionOfAlbums = [...tempArray]
     });
   };
@@ -53,6 +52,10 @@
     padding: 0px;
     margin: 0px;
     margin-top: 40px;
+    max-width: 100vw;
+    position: absolute;
+    bottom: 50px;
+
   }
 
   /* width */
