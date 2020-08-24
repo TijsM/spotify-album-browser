@@ -1,6 +1,6 @@
 <script>
   const SPOTIFY_CLIENT_ID = "4b712dd1511c4e6381691f9f9a994254";
-  const authorize_link = `https://accounts.spotify.com/authorize?client_id=${SPOTIFY_CLIENT_ID}&response_type=token&redirect_uri=http://localhost:5000/&scope=user-read-private%20user-read-email%20user-library-read`;
+  const authorize_link = `https://accounts.spotify.com/authorize?client_id=${SPOTIFY_CLIENT_ID}&response_type=token&redirect_uri=https://spotify-recommendation-engine.vercel.app&scope=user-read-private%20user-read-email%20user-library-read`;
 
   const params = new URLSearchParams(window.location.href);
   if (window.location.href.split("#access_token=")[1]) {
@@ -15,20 +15,18 @@
   }
 </script>
 
-<div>
-  <a href="{authorize_link}">Log in with spotify</a>
-</div>
+<a href="{authorize_link}" class="spotifyButton">
+  Log in with spotify
+</a>
 
 <style>
-  div {
+  .spotifyButton {
+    display: block;
     background-color: #1db954;
     padding: 10px;
     max-width: 300px;
-    margin: auto;
-    border-radius: 25px;
-  }
-  a {
-    color: white;
+    margin:  25px auto;
+    border-radius: 25px;color: white;
     text-decoration: none;
   }
 </style>
