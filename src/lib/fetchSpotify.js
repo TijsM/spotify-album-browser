@@ -11,7 +11,6 @@ export const getUserData = async () => {
 
   localStorage.setItem('user-name', user.display_name)
   return user
-
 };
 
 export const getAlbumsFromArtist = async (artistId) => {
@@ -55,7 +54,7 @@ export const getAlbumsFromUser = async () => {
   );
 
   const data = await userAlbums.json();
-  data?.items?.forEach((album) => {
+  data.items.forEach((album) => {
     albums.push(album.album);
     albums = [...albums];
   });

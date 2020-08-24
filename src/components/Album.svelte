@@ -4,7 +4,7 @@
 </script>
 
 {#if albumData}
-<div class="container">
+<a href="{albumData.external_urls.spotify}" class="container">
   <img src="{albumData.images[0].url}" alt="album cover image" />
   <div class="albumContainer">
     <div class="album">
@@ -14,14 +14,14 @@
       {albumData.name}
     </div>
   </div>
-</div>
+</a>
 {/if}
 
 <style>
   .container {
     flex-shrink: 0;
-    width: 80%;
-    width: 500px;
+    max-width: 80%;
+    width: 350px;
     margin: auto;
     margin: 25px;
   }
