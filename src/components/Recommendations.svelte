@@ -5,10 +5,13 @@
     getAlbumsFromUser
   } from "../lib/fetchSpotify.js";
   import Album from './Album.svelte'
+  import Authorize from './Authorize.svelte'
 
   let relatedArtists;
   let userAlbums;
   let A_RANDOM_ALBUM
+
+  let isDiscconnected = false;
 
   const AMOUNT_OF_FETCHED_RELATED_ARTISTS = 20
 
@@ -16,6 +19,9 @@
 
   const getData = async () => {
     const _albums = await getAlbumsFromUser();
+    if(_albums === null){
+      isDiscconnected = true
+    }
     userAlbums = [..._albums];
 
     const randomAlbumIndex = Math.floor(Math.random()*userAlbums.length)
@@ -38,11 +44,15 @@
 
 </script>
 
+{#if isDiscconnected && localStorage.getItem('bearer-token')}
+<Authorize />
+{:else}
 <div class="container">
   {#each randomSelectionOfAlbums as album}
   <Album albumData={album} />
   {/each}
 </div>
+{/if}
 
 
 <style>

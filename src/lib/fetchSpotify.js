@@ -1,5 +1,4 @@
 const token = localStorage.getItem("bearer-token");
-import Authorize from "../components/Authorize";
 
 export const getUserData = async () => {
   const userData = await fetch(`https://api.spotify.com/v1/me`, {
@@ -56,11 +55,9 @@ export const getAlbumsFromUser = async () => {
   const data = await userAlbums.json();
 
   if (data.error) {
-    localStorage.removeItem("bearer-token");
-    return ( <Authorize /> );
+    return null
   }
 
-  console.log(data);
   data.items.forEach((album) => {
     albums.push(album.album);
     albums = [...albums];
