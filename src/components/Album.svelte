@@ -36,6 +36,7 @@
     font-weight: bold;
   }
   .artist {
+    text-align: left;
     opacity: 0.8;
   }
   .albumContainer {

@@ -39,7 +39,7 @@
   };
 
   const fetch10Albums = () => {
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < 10; i++) {
       getData();
     }
   }
@@ -76,7 +76,7 @@
     margin: 0px;
     margin-top: 40px;
     max-width: 98vw;
-    
+
   }
 
   .loadMoreContainer{
