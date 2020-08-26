@@ -38,9 +38,17 @@
     });
   };
 
-  for (let i = 0; i < 10; i++) {
-    getData();
+  const fetch10Albums = () => {
+    for (let i = 0; i < 10; i++) {
+      getData();
+    }
   }
+
+  const reload = () => {
+    fetch10Albums() 
+  }
+
+  fetch10Albums()
 
 </script>
 
@@ -51,6 +59,9 @@
   {#each randomSelectionOfAlbums as album}
   <Album albumData={album} />
   {/each}
+  <div>
+    <button on:click={reload}>reload</button>
+  </div>
 </div>
 {/if}
 

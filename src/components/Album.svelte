@@ -21,7 +21,7 @@
   .container {
     flex-shrink: 0;
     max-width: 80%;
-    width: 350px;
+    width: 300px;
     margin: auto;
     margin: 25px;
   }

@@ -3,7 +3,7 @@
 	import Authorize from './components/Authorize.svelte'
 	import Recommendations from './components/Recommendations.svelte'
 
-</script>
+</script> 
 <main>
 <AppTitle/>
 
