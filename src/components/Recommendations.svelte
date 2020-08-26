@@ -39,13 +39,13 @@
   };
 
   const fetch10Albums = () => {
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 2; i++) {
       getData();
     }
   }
 
   const reload = () => {
-    fetch10Albums() 
+    fetch10Albums()
   }
 
   fetch10Albums()
@@ -59,8 +59,9 @@
   {#each randomSelectionOfAlbums as album}
   <Album albumData={album} />
   {/each}
-  <div>
-    <button on:click={reload}>reload</button>
+  <div on:click={reload} class="loadMoreContainer">
+    <img src="images/next.svg" alt="load more albums" class="nextIcon"/>
+    <div>Load more</div>
   </div>
 </div>
 {/if}
@@ -68,15 +69,31 @@
 
 <style>
   .container{
+    box-sizing: border-box;
     display: flex;
     overflow-x: scroll;
     padding: 0px;
     margin: 0px;
     margin-top: 40px;
-    max-width: 100vw;
-    position: absolute;
-    bottom: 50px;
+    max-width: 98vw;
+    
+  }
 
+  .loadMoreContainer{
+    box-sizing: border-box;
+    height: 200px;
+    min-width: 200px;
+    margin-left: 25px;
+    margin-right: 8px;
+    margin: 75px 8px 0px 25px; /*top right bottom left */
+    border-radius: 100%;
+    border: 1px solid #ffffff;
+    padding: 40px;
+    cursor: pointer;
+  }
+
+  .nextIcon{
+    width: 80px;
   }
 
   /* width */
