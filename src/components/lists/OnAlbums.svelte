@@ -5,6 +5,7 @@
     getAlbumsFromUser
   } from "../../lib/fetchSpotify.js";
   import Album from '../Album.svelte'
+  import LoadMore from '../LoadMore.svelte'
 
   export let userAlbums
 
@@ -31,10 +32,6 @@
     }
   }
 
-  const reload = () => {
-    fetch10Albums()
-  }
-
   fetch10Albums()
 </script>
 
@@ -42,10 +39,13 @@
   {#each randomSelectionOfAlbums as album}
   <Album albumData={album} />
   {/each}
-  <div on:click={reload} class="loadMoreContainer">
+
+  <LoadMore loadMore={fetch10Albums}/>
+
+  <!-- <div loadMore={reload} class="loadMoreContainer">
     <img src="images/next.svg" alt="load more albums" class="nextIcon"/>
     <div>Load more</div>
-  </div>
+  </div> -->
 </div>
 
 <style>

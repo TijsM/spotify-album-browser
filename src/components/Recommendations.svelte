@@ -6,6 +6,7 @@
   } from "../lib/fetchSpotify.js";
   import Authorize from './Authorize.svelte'
   import OnAlbums from './lists/OnAlbums.svelte'
+  import OnFavoriteArtists from './lists/OnFavoriteArtists.svelte'
 
   let userAlbums;
 
@@ -27,6 +28,7 @@
 {:else}
   {#if userAlbums}
     <OnAlbums userAlbums={userAlbums}/>
+    <OnFavoriteArtists userAlbums={userAlbums}/>
   {/if}
 {/if}
 
