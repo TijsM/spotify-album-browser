@@ -5,14 +5,10 @@
 
 {#if albumData}
 <a href="{albumData.external_urls.spotify}" class="container">
-  <img src="{albumData.images[0].url}" alt="album cover image" />
+  <img src="{albumData.images[0].url}" alt="album cover" />
   <div class="albumContainer">
-    <div class="album">
-      {albumData.artists[0].name}
-    </div>
-    <div class="artist">
-      {albumData.name}
-    </div>
+    <div class="album">{albumData.artists[0].name}</div>
+    <div class="artist">{albumData.name}</div>
   </div>
 </a>
 {/if}
