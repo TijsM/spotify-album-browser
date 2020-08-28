@@ -38,7 +38,7 @@
   fetch10Albums()
 </script>
 
-<div class="container">
+<div class="horizontalList">
   {#each randomSelectionOfAlbums as album}
   <Album albumData={album} />
   {/each}
@@ -49,6 +49,6 @@
 </div>
 
 <style>
-  
+
 </style>
 

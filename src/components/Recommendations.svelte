@@ -32,7 +32,7 @@
 
 
 <style>
-  :global(.container){
+  :global(.horizontalList){
     box-sizing: border-box;
     display: flex;
     overflow-x: scroll;
