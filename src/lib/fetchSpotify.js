@@ -39,6 +39,21 @@ export const getRelatedArtists = async (artistId) => {
   return await artistData.json();
 };
 
+export const getFavoriteArtists = async (limit = 30) => {
+  const favArtists = await fetch(
+    `https://api.spotify.com/v1/me/top/artists?limit=${limit}`,
+    {
+      headers: {
+        Authorization: "Bearer " + token
+        // Authorization: "Bearer " + 'BQBDN2_LoyQw1u6rRT6C6o0-rXeybyfBj0LMEuq-4zLmxeLyO9gr_4Aq-ydXjpgkFq-xPGHPnIBxnbXrPO4E2MFBg3-cjGXjxEETHwBuwOBxnFj-Wn_b320Q92Inp0rZknaH345PCQJNbr7_j-xURwWRqPZEBnhWuyEUm-xpos_dBtWA-wf4Pg',
+      },
+    }
+  );
+
+
+  return await favArtists.json();
+};
+
 let fetched = 0;
 let albums = [];
 export const getAlbumsFromUser = async () => {
@@ -55,7 +70,7 @@ export const getAlbumsFromUser = async () => {
   const data = await userAlbums.json();
 
   if (data.error) {
-    return null
+    return null;
   }
 
   data.items.forEach((album) => {

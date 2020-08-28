@@ -1,12 +1,18 @@
 <script>
   import {
-    getAlbumsFromArtist,
-    getRelatedArtists,
-    getAlbumsFromUser
+    getFavoriteArtists
   } from "../../lib/fetchSpotify.js";
   import Album from '../Album.svelte'
 
   export let userAlbums
+
+  let favoriteArtists = []
+  let albums
+
+  const getData = async () => {
+    //should load only 1 time
+    favoriteArtists = await getFavoriteArtists(10);
+  }
 
 
   const fetch10Albums = () => {
@@ -19,6 +25,8 @@
     fetch10Albums()
   }
 
-  // fetch10Albums()
+  fetch10Albums()
 
 </script>
+
+{  console.log('favs',favoriteArtists)}
