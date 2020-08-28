@@ -4,16 +4,13 @@
     getRelatedArtists,
     getAlbumsFromUser
   } from "../lib/fetchSpotify.js";
-  import Album from './Album.svelte'
   import Authorize from './Authorize.svelte'
+  import OnAlbums from './lists/OnAlbums.svelte'
 
   let relatedArtists;
   let userAlbums;
-  let A_RANDOM_ALBUM
 
   let isDiscconnected = false;
-
-  const AMOUNT_OF_FETCHED_RELATED_ARTISTS = 20
 
   let randomSelectionOfAlbums = []
 
@@ -23,47 +20,17 @@
       isDiscconnected = true
     }
     userAlbums = [..._albums];
-
-    const randomAlbumIndex = Math.floor(Math.random()*userAlbums.length)
-    relatedArtists = await getRelatedArtists(userAlbums[randomAlbumIndex].artists[0].id);
-    const randomRelatedArtistIndex = Math.floor(Math.random()*relatedArtists.artists.length)
-
-    getAlbumsFromArtist(relatedArtists.artists[randomRelatedArtistIndex].id).then((relAlbum) => {
-      const randomAlbumIndex = Math.floor(Math.random() * relAlbum.items.length)
-      A_RANDOM_ALBUM = relAlbum.items[randomAlbumIndex]
-
-      const tempArray = randomSelectionOfAlbums;
-      tempArray.push(relAlbum.items[randomAlbumIndex])
-      randomSelectionOfAlbums = [...tempArray]
-    });
   };
 
-  const fetch10Albums = () => {
-    for (let i = 0; i < 10; i++) {
-      getData();
-    }
-  }
-
-  const reload = () => {
-    fetch10Albums()
-  }
-
-  fetch10Albums()
-
+  getData()
 </script>
 
 {#if isDiscconnected && localStorage.getItem('bearer-token')}
 <Authorize />
 {:else}
-<div class="container">
-  {#each randomSelectionOfAlbums as album}
-  <Album albumData={album} />
-  {/each}
-  <div on:click={reload} class="loadMoreContainer">
-    <img src="images/next.svg" alt="load more albums" class="nextIcon"/>
-    <div>Load more</div>
-  </div>
-</div>
+  {#if userAlbums}
+    <OnAlbums userAlbums={userAlbums}/>
+  {/if}
 {/if}
 
 
