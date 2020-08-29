@@ -4,8 +4,7 @@
     getRelatedArtists,
     getAlbumsFromUser
   } from "../../lib/fetchSpotify.js";
-  import Album from '../Album.svelte'
-  import LoadMore from '../LoadMore.svelte'
+  import HorizontalList from '../HorizontalList.svelte'
 
   export let userAlbums
 
@@ -35,10 +34,5 @@
   fetch10Albums()
 </script>
 
-<div class="horizontalList">
-  {#each randomSelectionOfAlbums as album}
-  <Album albumData={album} />
-  {/each}
 
-  <LoadMore loadMore={fetch10Albums}/>
-</div>
+<HorizontalList title="test" loadMore={fetch10Albums} albums={randomSelectionOfAlbums}/>

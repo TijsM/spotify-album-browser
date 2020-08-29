@@ -1,8 +1,8 @@
 <script>
   import { getFavoriteArtists, getAlbumsFromArtist } from "../../lib/fetchSpotify.js";
   import { getRandom } from "../../lib/getRandom.js";
-  import Album from "../Album.svelte";
-  import LoadMore from '../LoadMore.svelte'
+  import HorizontalList from '../HorizontalList.svelte'
+
 
   export let userAlbums;
 
@@ -48,10 +48,5 @@
   fetch10Albums();
 </script>
 
-<div class="horizontalList">
-  {#each albums as album}
-    <Album albumData={album} />
-  {/each}
 
-  <LoadMore loadMore={fetch10Albums}/>
-</div>
+<HorizontalList title="test" loadMore={fetch10Albums} albums={albums}/>
