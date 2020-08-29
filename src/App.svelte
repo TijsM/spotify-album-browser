@@ -2,6 +2,7 @@
 	import AppTitle from './components/Header.svelte'
 	import Authorize from './components/Authorize.svelte'
 	import Recommendations from './components/Recommendations.svelte'
+	import Footer from './components/Footer.svelte'
 
 </script>
 <main>
@@ -12,6 +13,7 @@
 {/if}
 
 <Recommendations/>
+<Footer />
 </main>
 
 <style>
@@ -36,6 +38,5 @@
 
 	main {
 		text-align: center;
-
 	}
 </style>

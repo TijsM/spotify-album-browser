@@ -7,6 +7,7 @@
   import Authorize from './Authorize.svelte'
   import OnAlbums from './lists/OnAlbums.svelte'
   import OnFavoriteArtists from './lists/OnFavoriteArtists.svelte'
+  import OnGenre from './lists/OnGenre.svelte'
 
   let userAlbums;
 
@@ -27,11 +28,12 @@
 <Authorize />
 {:else}
   {#if userAlbums}
+  {console.log(userAlbums)}
     <OnFavoriteArtists title='Based on your _favorite artists_'  />
     <OnAlbums userAlbums={userAlbums}/>
     <OnFavoriteArtists title ='Based on your _recent history_' period='short_term'/>
     <OnFavoriteArtists title ='Based on your _all time_ favorites' period='short_term'/>
-    <!-- <OnGenre userAlbums={userAlbums}/> -->
+    <OnGenre userAlbums={userAlbums}/>
   {/if}
 {/if}
 
