@@ -21,4 +21,8 @@
     padding: 40px;
     cursor: pointer;
   }
+
+  .nextIcon{
+    width: 80px;
+  }
 </style>
