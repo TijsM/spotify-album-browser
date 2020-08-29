@@ -13,10 +13,8 @@
   });
 </script>
 
-
 <h2>
   {#each title.split("_") as part, i} {#if i === 1}
-  <span>
     <Annotation
       bind:visible
       bind:this="{rn}"
@@ -24,9 +22,8 @@
       type="highlight"
       padding="{2}"
     >
-      {part}
+      {part.trim()}
     </Annotation>
-  </span>
   {:else} {part} {/if} {/each}
 </h2>
 
@@ -39,8 +36,9 @@
     margin-left: 16px;
     font-size: 2em;
   }
-
-  :global(.highlighted) {
-    background-color: #1db954;
+  @media screen and (max-width: 900px) {
+    h2 {
+      font-size: 1.2em;
+    }
   }
 </style>
