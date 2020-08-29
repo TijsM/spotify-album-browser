@@ -4,6 +4,8 @@
     getRelatedArtists,
     getAlbumsFromUser
   } from "../../lib/fetchSpotify.js";
+  import { getRandom } from "../../lib/getRandom.js";
+  import { AMOUNT_OF_ALBUMS_TO_FETCH } from '../../constants.js'
   import HorizontalList from '../HorizontalList.svelte'
 
   export let userAlbums
@@ -12,12 +14,12 @@
   let relatedArtists;
 
   const getData = async() => {
-    const randomAlbumIndex = Math.floor(Math.random()*userAlbums.length)
+    const randomAlbumIndex = getRandom(userAlbums.length)
     relatedArtists = await getRelatedArtists(userAlbums[randomAlbumIndex].artists[0].id);
     const randomRelatedArtistIndex = Math.floor(Math.random()*relatedArtists.artists.length)
 
     getAlbumsFromArtist(relatedArtists.artists[randomRelatedArtistIndex].id).then((relAlbum) => {
-      const randomAlbumIndex = Math.floor(Math.random() * relAlbum.items.length)
+      const randomAlbumIndex = getRandom(relAlbum.items.length)
 
       const tempArray = randomSelectionOfAlbums;
       tempArray.push(relAlbum.items[randomAlbumIndex])
@@ -25,14 +27,14 @@
     });
   }
 
-  const fetch10Albums = () => {
-    for (let i = 0; i < 10; i++) {
+  const loadAlbums = () => {
+    for (let i = 0; i < AMOUNT_OF_ALBUMS_TO_FETCH; i++) {
       getData();
     }
   }
 
-  fetch10Albums()
+  loadAlbums()
 </script>
 
 
-<HorizontalList title="Based on your _saved albums_" loadMore={fetch10Albums} albums={randomSelectionOfAlbums}/>
+<HorizontalList title="Based on your _saved albums_" loadMore={loadAlbums} albums={randomSelectionOfAlbums}/>

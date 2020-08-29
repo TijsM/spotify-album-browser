@@ -1,6 +1,7 @@
 <script>
   import { getFavoriteArtists, getAlbumsFromArtist } from "../../lib/fetchSpotify.js";
   import { getRandom } from "../../lib/getRandom.js";
+  import { AMOUNT_OF_ALBUMS_TO_FETCH } from '../../constants.js'
   import HorizontalList from '../HorizontalList.svelte'
 
   let favoriteArtists = [];
@@ -32,18 +33,14 @@
 
   };
 
-  const fetch10Albums = () => {
-    for (let i = 0; i < 10; i++) {
+  const loadAlbums = () => {
+    for (let i = 0; i < AMOUNT_OF_ALBUMS_TO_FETCH; i++) {
       getData();
     }
   };
 
-  const reload = () => {
-    fetch10Albums();
-  };
-
-  fetch10Albums();
+  loadAlbums();
 </script>
 
 
-<HorizontalList title="Based on your _recent history_" loadMore={fetch10Albums} albums={albums}/>
+<HorizontalList title="Based on your _recent history_" loadMore={loadAlbums} albums={albums}/>

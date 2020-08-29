@@ -30,6 +30,7 @@
   .album {
     font-size: 1.4em;
     font-weight: bold;
+    text-align: left;
   }
   .artist {
     text-align: left;
