@@ -27,8 +27,8 @@
 <Authorize />
 {:else}
   {#if userAlbums}
-    <OnAlbums userAlbums={userAlbums}/>
     <OnFavoriteArtists userAlbums={userAlbums}/>
+    <OnAlbums userAlbums={userAlbums}/>
   {/if}
 {/if}
 

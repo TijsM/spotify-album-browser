@@ -1,18 +1,34 @@
 <script>
+  import Annotation from "svelte-rough-notation";
+  import { onMount } from "svelte";
+
   export let title;
 
-  const titleArray = title.split("_");
-  const htmlString = titleArray
-    .map((part, index) => {
-      if (index === 1) {
-        return `<span class='highlighted'> ${part} </span>`;
-      }
-      return part;
-    })
-    .join("");
+  let rn;
+  let visible = false;
+  onMount(() => {
+    setTimeout(() => {
+      visible = true;
+    }, 1000);
+  });
 </script>
 
-<h2>{@html htmlString}</h2>
+
+<h2>
+  {#each title.split("_") as part, i} {#if i === 1}
+  <span>
+    <Annotation
+      bind:visible
+      bind:this="{rn}"
+      color="#1DB954"
+      type="highlight"
+      padding="{2}"
+    >
+      {part}
+    </Annotation>
+  </span>
+  {:else} {part} {/if} {/each}
+</h2>
 
 <style>
   h2 {

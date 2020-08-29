@@ -35,4 +35,4 @@
 </script>
 
 
-<HorizontalList title="test" loadMore={fetch10Albums} albums={randomSelectionOfAlbums}/>
+<HorizontalList title="Based on your _saved albums_" loadMore={fetch10Albums} albums={randomSelectionOfAlbums}/>
