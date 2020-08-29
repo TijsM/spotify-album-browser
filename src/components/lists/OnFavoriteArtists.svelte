@@ -1,32 +1,57 @@
 <script>
-  import {
-    getFavoriteArtists
-  } from "../../lib/fetchSpotify.js";
-  import Album from '../Album.svelte'
+  import { getFavoriteArtists, getAlbumsFromArtist } from "../../lib/fetchSpotify.js";
+  import { getRandom } from "../../lib/getRandom.js";
+  import Album from "../Album.svelte";
+  import LoadMore from '../LoadMore.svelte'
 
-  export let userAlbums
+  export let userAlbums;
 
-  let favoriteArtists = []
-  let albums
+  let favoriteArtists = [];
+  let albums = [];
+
+  const AMOUNT_OF_ARTISTS = 40
+
+  const fetchFavoriteArtists = async () => {
+    favoriteArtists = await getFavoriteArtists(40);
+    favoriteArtists = favoriteArtists.items
+  };
 
   const getData = async () => {
-    //should load only 1 time
-    favoriteArtists = await getFavoriteArtists(10);
-  }
+    if(favoriteArtists.length === 0){
+      await fetchFavoriteArtists()
+    }
 
+    const randomArtistIndex = getRandom(favoriteArtists.length)
+    const randomArtist = favoriteArtists[randomArtistIndex]
+
+    let artistAlbums = await getAlbumsFromArtist(randomArtist.id)
+
+    artistAlbums = artistAlbums.items
+    const randomAlbumIndex = getRandom(artistAlbums.length)
+
+    const tempArray = albums;
+      tempArray.push(artistAlbums[randomAlbumIndex])
+      albums = [...tempArray]
+
+  };
 
   const fetch10Albums = () => {
     for (let i = 0; i < 10; i++) {
       getData();
     }
-  }
+  };
 
   const reload = () => {
-    fetch10Albums()
-  }
+    fetch10Albums();
+  };
 
-  fetch10Albums()
-
+  fetch10Albums();
 </script>
 
-{  console.log('favs',favoriteArtists)}
+<div class="horizontalList">
+  {#each albums as album}
+    <Album albumData={album} />
+  {/each}
+
+  <LoadMore loadMore={fetch10Albums}/>
+</div>

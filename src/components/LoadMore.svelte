@@ -1,6 +1,5 @@
 <script>
   export let loadMore
-  console.log('loadmore', loadMore)
 </script>
 
 

@@ -41,14 +41,4 @@
   {/each}
 
   <LoadMore loadMore={fetch10Albums}/>
-
-  <!-- <div loadMore={reload} class="loadMoreContainer">
-    <img src="images/next.svg" alt="load more albums" class="nextIcon"/>
-    <div>Load more</div>
-  </div> -->
 </div>
-
-<style>
-
-</style>
-
