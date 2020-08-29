@@ -6,6 +6,7 @@
   } from "../lib/fetchSpotify.js";
   import Authorize from './Authorize.svelte'
   import OnAlbums from './lists/OnAlbums.svelte'
+  import OnFavoriteArtists from './lists/OnFavoriteArtists.svelte'
 
   let userAlbums;
 
@@ -27,35 +28,12 @@
 {:else}
   {#if userAlbums}
     <OnAlbums userAlbums={userAlbums}/>
+    <OnFavoriteArtists userAlbums={userAlbums}/>
   {/if}
 {/if}
 
 
 <style>
-  :global(.container){
-    box-sizing: border-box;
-    display: flex;
-    overflow-x: scroll;
-    padding: 0px;
-    margin: 0px;
-    margin-top: 40px;
-    max-width: 98vw;
-  }
-
-  :global(.loadMoreContainer){
-    box-sizing: border-box;
-    height: 200px;
-    min-width: 200px;
-    margin-left: 25px;
-    margin-right: 8px;
-    margin: 75px 8px 0px 25px; /*top right bottom left */
-    border-radius: 100%;
-    border: 1px solid #ffffff;
-    padding: 40px;
-    cursor: pointer;
-  }
-
-
   :global(.nextIcon){
     width: 80px;
   }

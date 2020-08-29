@@ -3,7 +3,7 @@
 	import Authorize from './components/Authorize.svelte'
 	import Recommendations from './components/Recommendations.svelte'
 
-</script> 
+</script>
 <main>
 <AppTitle/>
 
@@ -21,7 +21,7 @@
 		width: 98vw;
 		box-sizing: border-box;
 		background-color: #191414;
-		overflow: hidden;
+		overflow-x: hidden;
 	}
 	 :global(h1) {
 		color: #1DB954;
