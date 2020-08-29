@@ -1,24 +1,17 @@
 <script>
   import Album from "./Album.svelte";
+  import LoadAlbum from "./AlbumLoading.svelte";
   import LoadMore from "./LoadMore.svelte";
   import HighlightedTitle from "./HighlightedTitle.svelte";
+  import { AMOUNT_OF_ALBUMS_TO_FETCH } from "../constants.js";
 
   export let title;
   export let albums;
   export let loadMore;
 </script>
 
-<HighlightedTitle {title}/>
-<div class="horizontalList">
-  {#each albums as album}
-    <Album albumData={album} />
-  {/each}
-
-  <LoadMore loadMore={loadMore}/>
-</div>
-
 <style>
-  .horizontalList{
+  .horizontalList {
     box-sizing: border-box;
     display: flex;
     overflow-x: scroll;
@@ -35,19 +28,32 @@
   }
 
   /* Track */
-  ::-webkit-scrollbar-track{
+  ::-webkit-scrollbar-track {
     background: #00000000;
   }
 
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: rgba(136, 136, 136, 0.325);
+    background: #00000000;
     border-radius: 10px;
-
   }
 
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: rgb(223, 218, 218);
+    background: #00000000;
   }
 </style>
+
+<HighlightedTitle {title} />
+<div class="horizontalList">
+  {#if AMOUNT_OF_ALBUMS_TO_FETCH <= albums.length}
+    {#each albums as album}
+      <Album albumData={album} />
+    {/each}
+    <LoadMore {loadMore} />
+  {:else}
+    {#each Array(AMOUNT_OF_ALBUMS_TO_FETCH) as unused}
+      <LoadAlbum />
+    {/each}
+  {/if}
+</div>

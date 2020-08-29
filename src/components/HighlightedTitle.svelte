@@ -34,7 +34,7 @@
     margin-top: 50px;
     margin-bottom: 0px;
     margin-left: 16px;
-    font-size: 2em;
+    font-size: 3em;
   }
   @media screen and (max-width: 900px) {
     h2 {

@@ -28,7 +28,6 @@
 <Authorize />
 {:else}
   {#if userAlbums}
-  {console.log(userAlbums)}
     <OnFavoriteArtists title='Based on your _favorite artists_'  />
     <OnAlbums userAlbums={userAlbums}/>
     <OnFavoriteArtists title ='Based on your _recent history_' period='short_term'/>
