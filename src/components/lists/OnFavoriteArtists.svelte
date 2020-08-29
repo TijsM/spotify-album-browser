@@ -46,4 +46,4 @@
 </script>
 
 
-<HorizontalList title="Based on your _favorite artists_" loadMore={loadAlbums} albums={albums}/>
+<HorizontalList {title} loadMore={loadAlbums} albums={albums}/>

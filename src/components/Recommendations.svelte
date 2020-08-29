@@ -30,6 +30,8 @@
     <OnFavoriteArtists title='Based on your _favorite artists_'  />
     <OnAlbums userAlbums={userAlbums}/>
     <OnFavoriteArtists title ='Based on your _recent history_' period='short_term'/>
+    <OnFavoriteArtists title ='Based on your _all time_ favorites' period='short_term'/>
+    <!-- <OnGenre userAlbums={userAlbums}/> -->
   {/if}
 {/if}
 
