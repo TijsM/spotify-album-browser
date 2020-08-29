@@ -49,4 +49,4 @@
 </script>
 
 
-<HorizontalList title="test" loadMore={fetch10Albums} albums={albums}/>
+<HorizontalList title="test _test_ test" loadMore={fetch10Albums} albums={albums}/>
