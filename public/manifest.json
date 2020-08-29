@@ -3,7 +3,7 @@
   "name": "Spotify recommendations engine",
   "lang": "en",
   "description": "A progressive web application that suggests albums based on the preferences and listening history of the user",
-  "start_url": "https://spotify-recommendation-engine.vercel.app/",
+  "start_url": "/",
   "background_color": "#ffffff",
   "theme_color": "#1db954",
   "dir": "ltr",

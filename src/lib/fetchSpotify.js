@@ -39,9 +39,9 @@ export const getRelatedArtists = async (artistId) => {
   return await artistData.json();
 };
 
-export const getFavoriteArtists = async (limit = 30) => {
+export const getFavoriteArtists = async (limit = 30, period = "medium_term") => {
   const favArtists = await fetch(
-    `https://api.spotify.com/v1/me/top/artists?limit=${limit}`,
+    `https://api.spotify.com/v1/me/top/artists?limit=${limit}&time_range=${period}`,
     {
       headers: {
         Authorization: "Bearer " + token

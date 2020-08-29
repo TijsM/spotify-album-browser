@@ -9,7 +9,7 @@
   const AMOUNT_OF_ARTISTS = 40
 
   const fetchFavoriteArtists = async () => {
-    favoriteArtists = await getFavoriteArtists(40);
+    favoriteArtists = await getFavoriteArtists(25, 'short_term');
     favoriteArtists = favoriteArtists.items
   };
 
@@ -46,4 +46,4 @@
 </script>
 
 
-<HorizontalList title="Based on your _favorite artists_" loadMore={fetch10Albums} albums={albums}/>
+<HorizontalList title="Based on your _recent history_" loadMore={fetch10Albums} albums={albums}/>
