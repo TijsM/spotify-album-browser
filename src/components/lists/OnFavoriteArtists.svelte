@@ -4,13 +4,16 @@
   import { getRandom } from "../../lib/getRandom.js";
   import HorizontalList from '../HorizontalList.svelte'
 
+  export let title
+  export let period
+
   let favoriteArtists = [];
   let albums = [];
 
-  const AMOUNT_OF_ARTISTS = 40
+  const AMOUNT_OF_ARTISTS = period?25:40
 
   const fetchFavoriteArtists = async () => {
-    favoriteArtists = await getFavoriteArtists(40);
+    favoriteArtists = await getFavoriteArtists(AMOUNT_OF_ARTISTS, period);
     favoriteArtists = favoriteArtists.items
   };
 

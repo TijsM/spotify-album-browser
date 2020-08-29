@@ -3,10 +3,10 @@
 </script>
 
 
-<div on:click={loadMore} class="loadMoreContainer">
+<button on:click={loadMore} class="loadMoreContainer">
   <img src="images/next.svg" alt="load more albums" class="nextIcon"/>
   <div>Load more</div>
-</div>
+</button>
 
 <style>
   .loadMoreContainer{
@@ -20,6 +20,7 @@
     border: 1px solid #ffffff;
     padding: 40px;
     cursor: pointer;
+    background-color: transparent;
   }
 
   .nextIcon{
