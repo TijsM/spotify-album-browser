@@ -6,13 +6,15 @@
 </script>
 
 <style>
+
   :global(body) {
     padding: 0px;
     height: 100vh;
     width: 98vw;
     box-sizing: border-box;
     background-color: #191414;
-    overflow-x: hidden;
+		overflow-x: hidden;
+		scroll-behavior: smooth;
   }
 
   :global(div) {
