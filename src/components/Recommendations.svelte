@@ -14,11 +14,14 @@
   let isDiscconnected = false;
 
   onMount(() => {
-    scrollFullPage();
+    console.log('in mount', isDiscconnected)
+    if(isDiscconnected){
+      scrollFullPage();
+    }
   });
 </script>
 
-{#if isDiscconnected && localStorage.getItem('bearer-token')}
+{#if isDiscconnected }
   <Authorize />
 {:else}
 
