@@ -2,9 +2,6 @@
   const SPOTIFY_CLIENT_ID = "4b712dd1511c4e6381691f9f9a994254";
   const authorize_link = `https://accounts.spotify.com/authorize?client_id=${SPOTIFY_CLIENT_ID}&response_type=token&redirect_uri=${window.location.href}&scope=user-top-read%20user-read-private%20user-read-email%20user-library-read`;
 
-
-  console.log(window.location.href)
-
   const params = new URLSearchParams(window.location.href);
   if (window.location.href.split("#access_token=")[1]) {
     const bearer = window.location.href
