@@ -73,14 +73,26 @@
     const albums = await getAlbumsFromGenre(trimmedGenres, selectedArtists);
 
     let fetched = 0;
-    while(selectedAlbums.length < AMOUNT_OF_ALBUMS_TO_FETCH ){
-      const temp = [...selectedAlbums];
-      temp.push(albums.tracks[getRandom(albums.tracks.length)].album);
-      selectedAlbums = [...temp];
+    while (fetched < AMOUNT_OF_ALBUMS_TO_FETCH) {
+      const randomAlbum =albums.tracks[getRandom(albums.tracks.length)].album
+      const selectedIds = selectedAlbums.map(album => album.id)
+
+      if (!(selectedIds.includes(randomAlbum.id))) {
+        fetched += 1;
+        const temp = [...selectedAlbums];
+        temp.push(randomAlbum);
+        selectedAlbums = [...temp];
+      }
+      else{
+        console.log('did already exist')
+      }
     }
   };
 
   getData();
 </script>
 
-<HorizontalList title="Based on your _genres_" loadMore={getData} albums={selectedAlbums} />
+<HorizontalList
+  title="Based on your _genres_"
+  loadMore={getData}
+  albums={selectedAlbums} />

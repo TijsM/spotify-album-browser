@@ -4,10 +4,4 @@
   <h1>Spotify recommendation Engine</h1>
 {/if}
 
-<span>By taking a look at your saved albums we will sugest some alternatives.</span>
-
-<style>
-  span{
-    color: rgb(122, 122, 122);
-  }
-</style>
+<span>By taking a look at your saved albums and your listening history we will suggest some alternatives.</span>
