@@ -13,19 +13,6 @@ export const getUserData = async () => {
   return user;
 };
 
-export const getAlbumsFromArtist = async (artistId) => {
-  const artistData = await fetch(
-    `https://api.spotify.com/v1/artists/${artistId}/albums`,
-    {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    }
-  );
-
-  return await artistData.json();
-};
-
 export const getRelatedArtists = async (artistId) => {
   const artistData = await fetch(
     `https://api.spotify.com/v1/artists/${artistId}/related-artists`,
@@ -39,19 +26,49 @@ export const getRelatedArtists = async (artistId) => {
   return await artistData.json();
 };
 
-export const getFavoriteArtists = async (limit = 30, period = "medium_term") => {
-  const favArtists = await fetch(
-    `https://api.spotify.com/v1/me/top/artists?limit=${limit}&time_range=${period}`,
+export const getAlbumsFromArtist = async (artistId) => {
+  const artistData = await fetch(
+    `https://api.spotify.com/v1/artists/${artistId}/albums`,
     {
       headers: {
-        Authorization: "Bearer " + token
-        // Authorization: "Bearer " + 'BQBDN2_LoyQw1u6rRT6C6o0-rXeybyfBj0LMEuq-4zLmxeLyO9gr_4Aq-ydXjpgkFq-xPGHPnIBxnbXrPO4E2MFBg3-cjGXjxEETHwBuwOBxnFj-Wn_b320Q92Inp0rZknaH345PCQJNbr7_j-xURwWRqPZEBnhWuyEUm-xpos_dBtWA-wf4Pg',
+        Authorization: "Bearer " + token,
       },
     }
   );
 
+  return await artistData.json();
+};
 
+export const getFavoriteArtists = async (
+  limit = 30,
+  period = "medium_term"
+) => {
+  const favArtists = await fetch(
+    `https://api.spotify.com/v1/me/top/artists?limit=${limit}&time_range=${period}`,
+    {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    }
+  );
   return await favArtists.json();
+};
+
+export const getAlbumsFromGenre = async (genres, artists) => {
+  const genresString = encodeURI(genres.join(","));
+  const artistsString = encodeURI(artists.join(","));
+
+
+  const albumsOnGenre = await fetch(
+    `https://api.spotify.com/v1/recommendations/?seed_genres=${genresString}&seed_artists=${artistsString}`,
+    {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    }
+  );
+
+  return await albumsOnGenre.json();
 };
 
 let fetched = 0;
@@ -59,7 +76,7 @@ let albums = [];
 export const getAlbumsFromUser = async () => {
   let total = 0;
   const userAlbums = await fetch(
-    `https://api.spotify.com/v1/me/albums??offset=${fetched}&limit=50`,
+    `https://api.spotify.com/v1/me/albums?offset=${fetched}&limit=50`,
     {
       headers: {
         Authorization: "Bearer " + token,

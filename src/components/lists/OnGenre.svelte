@@ -1,13 +1,14 @@
 <script>
-  // get all albums from user
-  // get all artists from the albums
-  // get genre from the tracks
-  // get recommendations with the "seed track" https://developer.spotify.com/documentation/web-api/reference/browse/get-recommendations/
-  import { getFavoriteArtists } from "../../lib/fetchSpotify";
+  import {
+    getFavoriteArtists,
+    getAlbumsFromGenre,
+  } from "../../lib/fetchSpotify";
   import { AMOUNT_OF_ALBUMS_TO_FETCH } from "../../constants.js";
-  import { generateKeyPair } from "crypto";
+  import { getRandom } from "../../lib/getRandom.js";
+  import HorizontalList from "../HorizontalList.svelte";
 
   let favoriteArtists = [];
+  let selectedAlbums = [];
 
   const fetchFavoriteArtists = async () => {
     favoriteArtists = await getFavoriteArtists(50);
@@ -50,9 +51,8 @@
       return comp;
     });
 
-
-    return genresArray
-  }
+    return genresArray;
+  };
 
   const getData = async () => {
     if (favoriteArtists.length === 0) {
@@ -61,15 +61,26 @@
 
     const genres = getGenresFromArtists();
     const topGenres = getSortedAmountGenres(genres).slice(0, 3);
-  };
+    const trimmedGenres = topGenres.map((genre) => genre.name);
 
-  const loadAlbums = () => {
-    for (let i = 0; i < AMOUNT_OF_ALBUMS_TO_FETCH; i++) {
-      getData();
+    const artistIds = favoriteArtists.map((artist) => artist.id);
+    const selectedArtists = [];
+
+    for (let i = 0; i < 2; i++) {
+      selectedArtists.push(artistIds[getRandom(artistIds.length)]);
+    }
+
+    const albums = await getAlbumsFromGenre(trimmedGenres, selectedArtists);
+
+    let fetched = 0;
+    while(selectedAlbums.length < AMOUNT_OF_ALBUMS_TO_FETCH ){
+      const temp = [...selectedAlbums];
+      temp.push(albums.tracks[getRandom(albums.tracks.length)].album);
+      selectedAlbums = [...temp];
     }
   };
 
-  loadAlbums();
-
-  console.log("her");
+  getData();
 </script>
+
+<HorizontalList title="Based on your _genres_" loadMore={getData} albums={selectedAlbums} />
