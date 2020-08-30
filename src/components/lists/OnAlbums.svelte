@@ -9,6 +9,7 @@
   import HorizontalList from "../HorizontalList.svelte";
 
   export let userAlbums;
+  export let onUnauthorized;
 
   let randomSelectionOfAlbums = [];
   let relatedArtists;
@@ -16,7 +17,7 @@
   const getUserAlbums = async () => {
     const _albums = await getAlbumsFromUser();
     if (_albums === null) {
-      isDiscconnected = true;
+      onUnauthorized()
     }
     userAlbums = [..._albums];
   };

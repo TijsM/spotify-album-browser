@@ -1,18 +1,5 @@
 const token = localStorage.getItem("bearer-token");
 
-export const getUserData = async () => {
-  const userData = await fetch(`https://api.spotify.com/v1/me`, {
-    headers: {
-      Authorization: "Bearer " + token,
-    },
-  });
-
-  const user = await userData.json();
-
-  localStorage.setItem("user-name", user.display_name);
-  return user;
-};
-
 export const getRelatedArtists = async (artistId) => {
   const artistData = await fetch(
     `https://api.spotify.com/v1/artists/${artistId}/related-artists`,

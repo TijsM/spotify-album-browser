@@ -24,7 +24,7 @@
 
   <OnGenre />
   <OnFavoriteArtists title="Based on your _favorite artists_" />
-  <OnAlbums />
+  <OnAlbums onUnauthorized={() => {isDiscconnected = true}}/>
   <OnFavoriteArtists
     title="Based on your _recent history_"
     period="short_term" />
