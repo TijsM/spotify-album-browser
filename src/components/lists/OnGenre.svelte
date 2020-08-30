@@ -75,6 +75,7 @@
     let fetched = 0;
     while (fetched < AMOUNT_OF_ALBUMS_TO_FETCH) {
       const randomAlbum =albums.tracks[getRandom(albums.tracks.length)].album
+
       const selectedIds = selectedAlbums.map(album => album.id)
 
       if (!(selectedIds.includes(randomAlbum.id))) {
@@ -82,9 +83,6 @@
         const temp = [...selectedAlbums];
         temp.push(randomAlbum);
         selectedAlbums = [...temp];
-      }
-      else{
-        console.log('did already exist')
       }
     }
   };

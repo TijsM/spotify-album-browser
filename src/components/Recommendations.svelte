@@ -1,42 +1,34 @@
 <script>
+  import { onMount } from "svelte";
   import {
     getAlbumsFromArtist,
     getRelatedArtists,
-    getAlbumsFromUser
+    getAlbumsFromUser,
   } from "../lib/fetchSpotify.js";
-  import Authorize from './Authorize.svelte'
-  import OnAlbums from './lists/OnAlbums.svelte'
-  import OnFavoriteArtists from './lists/OnFavoriteArtists.svelte'
-  import OnGenre from './lists/OnGenre.svelte'
-
-  let userAlbums;
+  import { scrollFullPage } from "../lib/scroll";
+  import Authorize from "./Authorize.svelte";
+  import OnAlbums from "./lists/OnAlbums.svelte";
+  import OnFavoriteArtists from "./lists/OnFavoriteArtists.svelte";
+  import OnGenre from "./lists/OnGenre.svelte";
 
   let isDiscconnected = false;
 
-  const getData = async () => {
-    const _albums = await getAlbumsFromUser();
-    if(_albums === null){
-      isDiscconnected = true
-    }
-    userAlbums = [..._albums];
-  };
-
-  getData()
+  onMount(() => {
+    scrollFullPage();
+  });
 </script>
 
 {#if isDiscconnected && localStorage.getItem('bearer-token')}
-<Authorize />
+  <Authorize />
 {:else}
-  {#if userAlbums}
-    <OnFavoriteArtists title='Based on your _favorite artists_'  />
-    <OnAlbums userAlbums={userAlbums}/>
-    <OnFavoriteArtists title ='Based on your _recent history_' period='short_term'/>
-    <OnFavoriteArtists title ='Based on your _all time_ favorites' period='short_term'/>
-    <OnGenre userAlbums={userAlbums}/>
-  {/if}
+
+  <OnGenre />
+  <OnFavoriteArtists title="Based on your _favorite artists_" />
+  <OnAlbums />
+  <OnFavoriteArtists
+    title="Based on your _recent history_"
+    period="short_term" />
+  <OnFavoriteArtists
+    title="Based on your _all time_ favorites"
+    period="long_term" />
 {/if}
-
-
-
-
-

@@ -18,6 +18,7 @@
     flex-shrink: 0;
     max-width: 80%;
     width: 300px;
+    max-width: 70%;
     margin: auto;
     margin: 25px;
   }
