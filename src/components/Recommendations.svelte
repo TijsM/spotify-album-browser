@@ -14,10 +14,7 @@
   let isDiscconnected = false;
 
   onMount(() => {
-    console.log('in mount', isDiscconnected)
-    if(isDiscconnected){
       scrollFullPage();
-    }
   });
 </script>
 

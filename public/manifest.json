@@ -1,10 +1,10 @@
 {
-  "short_name": "Spotify recommendations",
-  "name": "Spotify recommendations engine",
+  "short_name": "Spotify album browser",
+  "name": "Spotify album browser",
   "lang": "en",
   "description": "A progressive web application that suggests albums based on the preferences and listening history of the user",
   "start_url": "/",
-  "background_color": "#ffffff",
+  "background_color": "#191414",
   "theme_color": "#1db954",
   "dir": "ltr",
   "display": "standalone",
