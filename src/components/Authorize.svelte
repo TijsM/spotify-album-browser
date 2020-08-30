@@ -28,6 +28,15 @@
     width: 450px;
     text-align: center;
   }
+
+  @media screen and (max-width: 700px) {
+    .spotifyButton {
+      width: 65%;
+      font-size: 1.5em;
+      padding: 15px;
+      margin-top: 25px;
+    }
+  }
 </style>
 
 <div class="conversationalContainer">
