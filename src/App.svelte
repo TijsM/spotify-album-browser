@@ -14,19 +14,35 @@
     background-color: #191414;
     overflow-x: hidden;
   }
-  :global(h1) {
-    color: #1db954;
-    text-transform: uppercase;
-    font-size: 4em;
-    font-weight: 100;
-  }
 
   :global(div) {
     color: white;
   }
 
   main {
-    text-align: center;
+		text-align: center;
+    background-color: #191414;
+	}
+
+	:global(.conversationalContainer){
+    text-align: left;
+    margin-left: 16px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  :global(.conversationalHeader){
+    flex-grow: 0;
+    color: #1db954;
+    font-size: 6em;
+    margin-bottom: 100px;
+  }
+  :global(.conversationalContent) {
+    flex-shrink: 0;
+    font-size: 4em;
+    text-align: left;
+    max-width: 60%;
   }
 </style>
 
@@ -36,9 +52,8 @@
   {#if !localStorage.getItem('bearer-token')}
     <Authorize />
   {:else}
-		<Recommendations />
-		<Footer />
+    <Recommendations />
+    <Footer />
   {/if}
-
 
 </main>

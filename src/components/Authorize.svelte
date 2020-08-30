@@ -15,18 +15,27 @@
   }
 </script>
 
-<a href="{authorize_link}" class="spotifyButton">
-  Log in with spotify
-</a>
-
 <style>
   .spotifyButton {
     display: block;
     background-color: #1db954;
-    padding: 10px;
-    max-width: 300px;
-    margin:  25px auto;
-    border-radius: 25px;color: white;
+    border-radius: 50px;
+    color: white;
     text-decoration: none;
+    font-size: 2.5em;
+    margin-top: 100px;
+    padding: 25px;
+    width: 450px;
+    text-align: center;
   }
 </style>
+
+<div class="conversationalContainer">
+  <div class="conversationalHeader">Let's log in with Spotify</div>
+
+  <div class="conversationalContent">
+    We do need access to your spotify account to provide you with personal
+    recommendations.
+  </div>
+  <a href={authorize_link} class="spotifyButton">Log in with spotify</a>
+</div>
