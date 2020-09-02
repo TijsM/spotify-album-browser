@@ -1,11 +1,13 @@
 <script>
   export let albumData;
-  import { saveAlbum } from '../lib/fetchSpotify'
+  import { saveAlbum } from "../lib/fetchSpotify";
+  import Like from "./Like.svelte";
 
   const save = (id) => {
+    console.log('clicked', id)
     event.stopPropagation();
-    saveAlbum(id)
-  }
+    saveAlbum(id);
+  };
 </script>
 
 <style>
@@ -24,7 +26,7 @@
     margin-bottom: 15px;
   }
 
-  .meta{
+  .meta {
     display: flex;
     justify-content: space-between;
   }
@@ -56,10 +58,10 @@
         <div class="album">{albumData.artists[0].name}</div>
         <div class="artist">{albumData.name}</div>
       </div>
-      <button on:click={() => {save(albumData.id)}}>
-        save
-      </button>
+      <Like
+        clicked={() => {
+          save(albumData.id);
+        }} />
     </div>
   </div>
 {/if}
-
