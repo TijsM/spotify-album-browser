@@ -3,16 +3,6 @@
   export let albumData;
 </script>
 
-{#if albumData}
-<a href="{albumData.external_urls.spotify}" class="container">
-  <img src="{albumData.images[0].url}" alt="album cover" />
-  <div class="albumContainer">
-    <div class="album">{albumData.artists[0].name}</div>
-    <div class="artist">{albumData.name}</div>
-  </div>
-</a>
-{/if}
-
 <style>
   .container {
     flex-shrink: 0;
@@ -21,6 +11,7 @@
     max-width: 70%;
     margin: auto;
     margin: 25px;
+    cursor: pointer;
   }
 
   img {
@@ -44,3 +35,15 @@
     align-items: flex-start;
   }
 </style>
+
+{#if albumData}
+  <div
+    on:click={window.open(albumData.external_urls.spotify)}
+    class="container">
+    <img src={albumData.images[0].url} alt="album cover" />
+    <div class="albumContainer">
+      <div class="album">{albumData.artists[0].name}</div>
+      <div class="artist">{albumData.name}</div>
+    </div>
+  </div>
+{/if}
