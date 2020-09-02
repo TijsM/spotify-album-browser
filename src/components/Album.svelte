@@ -1,6 +1,11 @@
 <script>
-  import { onMount, afterUpdate } from "svelte";
   export let albumData;
+  import { saveAlbum } from '../lib/fetchSpotify'
+
+  const save = (id) => {
+    event.stopPropagation();
+    saveAlbum(id)
+  }
 </script>
 
 <style>
@@ -17,6 +22,11 @@
   img {
     width: 100%;
     margin-bottom: 15px;
+  }
+
+  .meta{
+    display: flex;
+    justify-content: space-between;
   }
 
   .album {
@@ -41,9 +51,15 @@
     on:click={window.open(albumData.external_urls.spotify)}
     class="container">
     <img src={albumData.images[0].url} alt="album cover" />
-    <div class="albumContainer">
-      <div class="album">{albumData.artists[0].name}</div>
-      <div class="artist">{albumData.name}</div>
+    <div class="meta">
+      <div class="albumContainer">
+        <div class="album">{albumData.artists[0].name}</div>
+        <div class="artist">{albumData.name}</div>
+      </div>
+      <button on:click={() => {save(albumData.id)}}>
+        save
+      </button>
     </div>
   </div>
 {/if}
+

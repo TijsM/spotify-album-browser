@@ -45,7 +45,6 @@ export const getAlbumsFromGenre = async (genres, artists) => {
   const genresString = encodeURI(genres.join(","));
   const artistsString = encodeURI(artists.join(","));
 
-
   const albumsOnGenre = await fetch(
     `https://api.spotify.com/v1/recommendations/?seed_genres=${genresString}&seed_artists=${artistsString}`,
     {
@@ -91,4 +90,19 @@ export const getAlbumsFromUser = async () => {
   } else {
     return albums;
   }
+};
+
+export const saveAlbum = async (id) => {
+  const res = await fetch(
+    `https://api.spotify.com/v1/me/albums?ids=${id}`,
+    {
+      method: "PUT",
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    }
+  );
+
+  const result = res.json();
+  return result;
 };
