@@ -12,19 +12,29 @@
   import OnGenre from "./lists/OnGenre.svelte";
 
   let isDiscconnected = false;
+  let userAlbums = [];
 
   onMount(() => {
-      scrollFullPage();
+    scrollFullPage();
   });
+
+  const getUserAlbums = async () => {
+    const _albums = await getAlbumsFromUser();
+    if (_albums === null) {
+      isDiscconnected = true;
+    }
+    userAlbums = [..._albums];
+  };
+
+  getUserAlbums();
 </script>
 
-{#if isDiscconnected }
+{#if isDiscconnected}
   <Authorize />
 {:else}
-
   <OnGenre />
   <OnFavoriteArtists title="Based on your _favorite artists_" />
-  <OnAlbums onUnauthorized={() => {isDiscconnected = true}}/>
+  <OnAlbums {userAlbums} />
   <OnFavoriteArtists
     title="Based on your _recent history_"
     period="short_term" />
