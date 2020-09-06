@@ -10,9 +10,17 @@
   let favoriteArtists = [];
   let selectedAlbums = [];
 
+  let AMOUNT_ARTISTS = 0;
+  let AMOUNT_GENRES = 5;
+
   const fetchFavoriteArtists = async () => {
+    //fetch favorite artists from spotify
     favoriteArtists = await getFavoriteArtists(50);
     favoriteArtists = favoriteArtists.items;
+    if(!favoriteArtists || favoriteArtists.length === 0){
+      //if spotify API fucks up, get favorite artists based on albums
+      favoriteArtists = getFavArtistsBasedOnAlbums(userAlbums, AMOUNT_OF_ARTISTS);
+    }
   };
 
   const getGenresFromArtists = () => {
@@ -60,25 +68,34 @@
     }
 
     const genres = getGenresFromArtists();
-    const topGenres = getSortedAmountGenres(genres).slice(0, 3);
+    const topGenres = getSortedAmountGenres(genres).slice(0, AMOUNT_GENRES);
     const trimmedGenres = topGenres.map((genre) => genre.name);
 
     const artistIds = favoriteArtists.map((artist) => artist.id);
     const selectedArtists = [];
 
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < AMOUNT_ARTISTS; i++) {
       selectedArtists.push(artistIds[getRandom(artistIds.length)]);
     }
 
     const albums = await getAlbumsFromGenre(trimmedGenres, selectedArtists);
 
+    //recursivly change the parameters of the request to spotify
+    if(albums.tracks.length === 0){
+      AMOUNT_ARTISTS +=1
+      AMOUNT_GENRES -=1
+      getData()
+      return
+    }
+
     let fetched = 0;
     while (fetched < AMOUNT_OF_ALBUMS_TO_FETCH) {
-      const randomAlbum =albums.tracks[getRandom(albums.tracks.length)].album
+      console.log('here', albums.tracks)
+      const randomAlbum = albums.tracks[getRandom(albums.tracks.length)].album;
 
-      const selectedIds = selectedAlbums.map(album => album.id)
+      const selectedIds = selectedAlbums.map((album) => album.id);
 
-      if (!(selectedIds.includes(randomAlbum.id))) {
+      if (!selectedIds.includes(randomAlbum.id)) {
         fetched += 1;
         const temp = [...selectedAlbums];
         temp.push(randomAlbum);

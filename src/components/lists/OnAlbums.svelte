@@ -9,24 +9,11 @@
   import HorizontalList from "../HorizontalList.svelte";
 
   export let userAlbums;
-  export let onUnauthorized;
 
   let randomSelectionOfAlbums = [];
   let relatedArtists;
 
-  const getUserAlbums = async () => {
-    const _albums = await getAlbumsFromUser();
-    if (_albums === null) {
-      onUnauthorized()
-    }
-    userAlbums = [..._albums];
-  };
-
   const getData = async () => {
-    if (!userAlbums) {
-      await getUserAlbums();
-    }
-
     const randomAlbumIndex = getRandom(userAlbums.length);
     relatedArtists = await getRelatedArtists(
       userAlbums[randomAlbumIndex].artists[0].id
@@ -52,7 +39,10 @@
     }
   };
 
-  loadAlbums();
+  $: if (userAlbums.length !== 0) {
+    loadAlbums();
+  }
+  
 </script>
 
 <HorizontalList
