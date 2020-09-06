@@ -33,12 +33,14 @@
   <Authorize />
 {:else}
   <OnGenre />
-  <OnFavoriteArtists title="Based on your _favorite artists_" />
+  <OnFavoriteArtists title="Based on your _favorite artists_" {userAlbums} />
   <OnAlbums {userAlbums} />
   <OnFavoriteArtists
     title="Based on your _recent history_"
-    period="short_term" />
+    period="short_term"
+    {userAlbums} />
   <OnFavoriteArtists
     title="Based on your _all time_ favorites"
-    period="long_term" />
+    period="long_term"
+    {userAlbums} />
 {/if}
