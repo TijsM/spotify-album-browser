@@ -18,10 +18,13 @@
   const AMOUNT_OF_ARTISTS = period ? 25 : 40;
 
   const fetchFavoriteArtists = async () => {
-    favoriteArtists = getFavArtistsBasedOnAlbums(userAlbums, AMOUNT_OF_ARTISTS);
-    // favoriteArtists = await getFavoriteArtists(AMOUNT_OF_ARTISTS, period);
-    // favoriteArtists = favoriteArtists.items;
-    console.log(favoriteArtists)
+    //fetch favorite artists from spotify
+    favoriteArtists = await getFavoriteArtists(AMOUNT_OF_ARTISTS, period);
+    favoriteArtists = favoriteArtists.items;
+    if(!favoriteArtists || favoriteArtists.length === 0){
+      //if spotify API fucks up, get favorite artists based on albums
+      favoriteArtists = getFavArtistsBasedOnAlbums(userAlbums, AMOUNT_OF_ARTISTS);
+    }
   };
 
   const getData = async () => {
@@ -32,7 +35,7 @@
     const randomArtistIndex = getRandom(favoriteArtists.length);
     const randomArtist = favoriteArtists[randomArtistIndex];
 
-    let artistAlbums = await getAlbumsFromArtist(randomArtist.id ? randomArtist.id : randomArtist);
+    let artistAlbums = await getAlbumsFromArtist(randomArtist.id);
 
     artistAlbums = artistAlbums.items;
     const randomAlbumIndex = getRandom(artistAlbums.length);
