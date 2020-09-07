@@ -90,7 +90,6 @@
 
     let fetched = 0;
     while (fetched < AMOUNT_OF_ALBUMS_TO_FETCH) {
-      console.log('here', albums.tracks)
       const randomAlbum = albums.tracks[getRandom(albums.tracks.length)].album;
 
       const selectedIds = selectedAlbums.map((album) => album.id);

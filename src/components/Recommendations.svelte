@@ -10,9 +10,12 @@
   import OnAlbums from "./lists/OnAlbums.svelte";
   import OnFavoriteArtists from "./lists/OnFavoriteArtists.svelte";
   import OnGenre from "./lists/OnGenre.svelte";
+  import NoAlbumsFound from './NoAlbumsFound.svelte'
 
   let isDiscconnected = false;
   let userAlbums = [];
+
+  let albumsLoaded = false;
 
   onMount(() => {
     scrollFullPage();
@@ -24,6 +27,7 @@
       isDiscconnected = true;
     }
     userAlbums = [..._albums];
+    albumsLoaded = true;
   };
 
   getUserAlbums();
@@ -32,15 +36,20 @@
 {#if isDiscconnected}
   <Authorize />
 {:else}
-  <OnGenre />
-  <OnFavoriteArtists title="Based on your _favorite artists_" {userAlbums} />
-  <OnAlbums {userAlbums} />
-  <OnFavoriteArtists
-    title="Based on your _recent history_"
-    period="short_term"
-    {userAlbums} />
-  <OnFavoriteArtists
-    title="Based on your _all time_ favorites"
-    period="long_term"
-    {userAlbums} />
+  <!-- check if albums are loaded, and there are actually albums in the array -->
+  {#if albumsLoaded && !(!userAlbums || userAlbums.length > 0)}
+    <NoAlbumsFound />
+  {:else}
+    <OnGenre />
+    <OnFavoriteArtists title="Based on your _favorite artists_" {userAlbums} />
+    <OnAlbums {userAlbums} />
+    <OnFavoriteArtists
+      title="Based on your _recent history_"
+      period="short_term"
+      {userAlbums} />
+    <OnFavoriteArtists
+      title="Based on your _all time_ favorites"
+      period="long_term"
+      {userAlbums} />
+  {/if}
 {/if}

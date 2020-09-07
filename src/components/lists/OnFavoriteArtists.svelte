@@ -12,6 +12,8 @@
   export let period;
   export let userAlbums;
 
+  let favArtistsLoaded;
+
   let favoriteArtists = [];
   let albums = [];
 
@@ -21,9 +23,12 @@
     //fetch favorite artists from spotify
     favoriteArtists = await getFavoriteArtists(AMOUNT_OF_ARTISTS, period);
     favoriteArtists = favoriteArtists.items;
-    if(!favoriteArtists || favoriteArtists.length === 0){
+    if (!favoriteArtists || favoriteArtists.length === 0) {
       //if spotify API fucks up, get favorite artists based on albums
-      favoriteArtists = getFavArtistsBasedOnAlbums(userAlbums, AMOUNT_OF_ARTISTS);
+      favoriteArtists = getFavArtistsBasedOnAlbums(
+        userAlbums,
+        AMOUNT_OF_ARTISTS
+      );
     }
   };
 
