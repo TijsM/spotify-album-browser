@@ -3,6 +3,7 @@
     getFavoriteArtists,
     getAlbumsFromGenre,
   } from "../../lib/fetchSpotify";
+  import { getFavArtistsBasedOnAlbums } from "../../lib/getFavoriteArtists";
   import { AMOUNT_OF_ALBUMS_TO_FETCH } from "../../constants.js";
   import { getRandom } from "../../lib/getRandom.js";
   import HorizontalList from "../HorizontalList.svelte";
@@ -17,9 +18,12 @@
     //fetch favorite artists from spotify
     favoriteArtists = await getFavoriteArtists(50);
     favoriteArtists = favoriteArtists.items;
-    if(!favoriteArtists || favoriteArtists.length === 0){
+    if (!favoriteArtists || favoriteArtists.length === 0) {
       //if spotify API fucks up, get favorite artists based on albums
-      favoriteArtists = getFavArtistsBasedOnAlbums(userAlbums, AMOUNT_OF_ARTISTS);
+      favoriteArtists = getFavArtistsBasedOnAlbums(
+        userAlbums,
+        AMOUNT_OF_ARTISTS
+      );
     }
   };
 
@@ -81,11 +85,11 @@
     const albums = await getAlbumsFromGenre(trimmedGenres, selectedArtists);
 
     //recursivly change the parameters of the request to spotify
-    if(albums.tracks.length === 0){
-      AMOUNT_ARTISTS +=1
-      AMOUNT_GENRES -=1
-      getData()
-      return
+    if (albums.tracks.length === 0) {
+      AMOUNT_ARTISTS += 1;
+      AMOUNT_GENRES -= 1;
+      getData();
+      return;
     }
 
     let fetched = 0;
