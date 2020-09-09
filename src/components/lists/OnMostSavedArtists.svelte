@@ -18,7 +18,7 @@
 
   const getData = async () => {
     const favArtists = getFavArtists()
-    const randomArtist = favArtists[getRandom(TOP_X_ARTISTS)]?.id;
+    const randomArtist = favArtists[getRandom(TOP_X_ARTISTS)].id;
     let albums = await getAlbumsFromArtist(randomArtist);
     albums = albums.items;
     const album = albums[getRandom(albums.length)]
