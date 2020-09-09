@@ -3,6 +3,10 @@
   import Authorize from "./components/Authorize.svelte";
   import Recommendations from "./components/Recommendations.svelte";
   import Footer from "./components/Footer.svelte";
+  import LogRocket from 'logrocket';
+  
+  LogRocket.init('tbbppt/spotify-album-browser');
+
 </script>
 
 <style>
