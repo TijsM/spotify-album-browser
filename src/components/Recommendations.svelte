@@ -9,8 +9,9 @@
   import Authorize from "./Authorize.svelte";
   import OnAlbums from "./lists/OnAlbums.svelte";
   import OnFavoriteArtists from "./lists/OnFavoriteArtists.svelte";
+  import OnMostSavedArtists from "./lists/OnMostSavedArtists.svelte";
   import OnGenre from "./lists/OnGenre.svelte";
-  import NoAlbumsFound from './NoAlbumsFound.svelte'
+  import NoAlbumsFound from "./NoAlbumsFound.svelte";
 
   let isDiscconnected = false;
   let userAlbums = [];
@@ -43,6 +44,7 @@
     <OnGenre />
     <OnFavoriteArtists title="Based on your _favorite artists_" {userAlbums} />
     <OnAlbums {userAlbums} />
+    <OnMostSavedArtists {userAlbums} />
     <OnFavoriteArtists
       title="Based on your _recent history_"
       period="short_term"
