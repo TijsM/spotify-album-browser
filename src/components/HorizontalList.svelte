@@ -42,6 +42,18 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #00000000;
   }
+
+  @media screen and (min-width: 800px) {
+    ::-webkit-scrollbar-thumb {
+      background: #84848443;
+      border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #848484;
+    }
+  }
 </style>
 
 <HighlightedTitle {title} />
