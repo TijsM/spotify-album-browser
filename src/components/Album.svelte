@@ -19,6 +19,7 @@
     margin: auto;
     margin: 25px;
     cursor: pointer;
+    scroll-snap-align: start ;
 
     -webkit-touch-callout: none;
     -webkit-user-select: none;

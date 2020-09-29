@@ -21,6 +21,7 @@
     padding: 40px;
     cursor: pointer;
     background-color: transparent;
+    scroll-snap-align: start ;
   }
 
   .nextIcon{

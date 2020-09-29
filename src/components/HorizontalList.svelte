@@ -20,6 +20,9 @@
     margin-top: 20px;
     margin-bottom: 100px;
     max-width: 98vw;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 16px;
+
   }
 
   /* width */
