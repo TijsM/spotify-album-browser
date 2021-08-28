@@ -25,4 +25,4 @@
   loadAlbums();
 </script>
 
-<HorizontalList title={"New releases"} loadMore={loadAlbums} {albums} />
+<HorizontalList title={"_New releases_"} loadMore={loadAlbums} {albums} />
