@@ -93,10 +93,22 @@ export const getAlbumsFromUser = async () => {
 };
 
 export const saveAlbum = async (id) => {
+  const res = await fetch(`https://api.spotify.com/v1/me/albums?ids=${id}`, {
+    method: "PUT",
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  });
+
+  const result = res.json();
+  return result;
+};
+
+export const getNewReleases = async () => {
   const res = await fetch(
-    `https://api.spotify.com/v1/me/albums?ids=${id}`,
+    `https://api.spotify.com/v1/browse/new-releases
+  `,
     {
-      method: "PUT",
       headers: {
         Authorization: "Bearer " + token,
       },

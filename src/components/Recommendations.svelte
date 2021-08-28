@@ -10,6 +10,7 @@
   import OnAlbums from "./lists/OnAlbums.svelte";
   import OnFavoriteArtists from "./lists/OnFavoriteArtists.svelte";
   import OnMostSavedArtists from "./lists/OnMostSavedArtists.svelte";
+  import OnRecentReleases from "./lists/OnRecentReleases.svelte";
   import OnGenre from "./lists/OnGenre.svelte";
   import NoAlbumsFound from "./NoAlbumsFound.svelte";
 
@@ -42,16 +43,19 @@
     <NoAlbumsFound />
   {:else}
     <OnGenre />
+    <OnRecentReleases />
     <OnFavoriteArtists title="Based on your _favorite artists_" {userAlbums} />
     <OnAlbums {userAlbums} />
     <OnMostSavedArtists {userAlbums} />
     <OnFavoriteArtists
       title="Based on your _recent history_"
       period="short_term"
-      {userAlbums} />
+      {userAlbums}
+    />
     <OnFavoriteArtists
       title="Based on your _all time_ favorites"
       period="long_term"
-      {userAlbums} />
+      {userAlbums}
+    />
   {/if}
 {/if}

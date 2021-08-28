@@ -12,8 +12,6 @@
   export let period;
   export let userAlbums;
 
-  let favArtistsLoaded;
-
   let favoriteArtists = [];
   let albums = [];
 
