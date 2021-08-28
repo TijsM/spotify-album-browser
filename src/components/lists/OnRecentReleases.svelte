@@ -7,8 +7,12 @@
 
   const getData = async () => {
     const newAlbumsResponse = await getNewReleases();
-    const newAlbums = newAlbumsResponse.albums.items;
-
+    const newReleases = newAlbumsResponse.albums.items;
+    const newAlbums = newReleases
+      .filter((album) => album.album_type === "album")
+      .sort((a, b) => {
+        return new Date(b.date) - new Date(a.date);
+      });
     albums = [...newAlbums];
   };
 
