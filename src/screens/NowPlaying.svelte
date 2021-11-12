@@ -29,6 +29,10 @@
   };
 
   loadGetNowPlaying();
+
+  setInterval(() => {
+    loadGetNowPlaying();
+  }, 2500);
 </script>
 
 {#if data}
