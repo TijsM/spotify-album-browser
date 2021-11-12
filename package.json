@@ -21,6 +21,7 @@
   "dependencies": {
     "logrocket": "^1.0.12",
     "sirv-cli": "^1.0.0",
-    "svelte-rough-notation": "^0.1.4"
+    "svelte-rough-notation": "^0.1.4",
+    "svelte-routing": "^1.6.0"
   }
 }
