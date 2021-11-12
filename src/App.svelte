@@ -1,5 +1,5 @@
 <script>
-  import { Router, Link, Route } from "svelte-routing";
+  import { Router, Route } from "svelte-routing";
 
   import Home from "./screens/Home.svelte";
   import NowPlaying from "./screens/NowPlaying.svelte";
@@ -12,11 +12,8 @@
 </script>
 
 <Router {url}>
-  <div>
-    <Route path="now-playing" component={NowPlaying} />
-    <Route path="home" component={Home} />
-    <Route path="/" component={Home} />
-  </div>
+  <Route path="now-playing" component={NowPlaying} />
+  <Route path="/" component={Home} />
 </Router>
 
 <style>
