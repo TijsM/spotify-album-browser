@@ -118,3 +118,23 @@ export const getNewReleases = async () => {
   const result = res.json();
   return result;
 };
+
+export const getPlaybackState = async () => {
+  const favArtists = await fetch(`https://api.spotify.com/v1/me/player`, {
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  });
+  return await favArtists.json();
+};
+export const getNowPlaying = async () => {
+  const favArtists = await fetch(
+    `https://api.spotify.com/v1/me/player/currently-playing`,
+    {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    }
+  );
+  return await favArtists.json();
+};

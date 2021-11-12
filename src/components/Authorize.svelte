@@ -1,6 +1,6 @@
 <script>
   const SPOTIFY_CLIENT_ID = "4b712dd1511c4e6381691f9f9a994254";
-  const authorize_link = `https://accounts.spotify.com/authorize?client_id=${SPOTIFY_CLIENT_ID}&response_type=token&redirect_uri=${window.location.href}&scope=user-library-read%20user-library-modify%20user-top-read`;
+  const authorize_link = `https://accounts.spotify.com/authorize?client_id=${SPOTIFY_CLIENT_ID}&response_type=token&redirect_uri=${window.location.href}&scope=user-library-read%20user-library-modify%20user-top-read%20user-read-playback-state`;
 
   const params = new URLSearchParams(window.location.href);
   if (window.location.href.split("#access_token=")[1]) {
@@ -14,6 +14,16 @@
     }
   }
 </script>
+
+<div class="conversationalContainer">
+  <div class="conversationalHeader">Let's log in with Spotify</div>
+
+  <div class="conversationalContent">
+    We do need access to your spotify account to provide you with personal
+    recommendations.
+  </div>
+  <a href={authorize_link} class="spotifyButton">Log in with spotify</a>
+</div>
 
 <style>
   .spotifyButton {
@@ -38,13 +48,3 @@
     }
   }
 </style>
-
-<div class="conversationalContainer">
-  <div class="conversationalHeader">Let's log in with Spotify</div>
-
-  <div class="conversationalContent">
-    We do need access to your spotify account to provide you with personal
-    recommendations.
-  </div>
-  <a href={authorize_link} class="spotifyButton">Log in with spotify</a>
-</div>

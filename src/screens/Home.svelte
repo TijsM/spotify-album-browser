@@ -11,7 +11,7 @@
   {#if !localStorage.getItem("bearer-token")}
     <Authorize />
   {:else}
-    <Recommendations />
+    <!-- <Recommendations /> -->
     <Footer />
   {/if}
 </main>
