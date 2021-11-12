@@ -32,28 +32,76 @@
 </script>
 
 {#if data}
-  <div class="container">
-    <img class="album" src={data.album.images[0].url} alt="Italian Trulli" />
-    <p class="artist">{getArtistString(data.album.artists)}</p>
-    <p class="artist">{data.name}</p>
+  <div class="np-container --bgImage: {data.album.images[0].url}">
+    <div class="np-albumContainer">
+      <img class="np-album" src={data.album.images[0].url} alt="album cover" />
+      <p class="np-albumName">{data.album.name}</p>
+    </div>
+    <div class="np-data">
+      <p class="np-artist">{getArtistString(data.album.artists)}</p>
+      <p class="np-track">{data.name}</p>
+    </div>
   </div>
+  <img class="np-bgImage" src={data.album.images[0].url} alt="background" />
 {:else}
   loading{/if}
 
 <style>
-  .container {
+  .np-bgImage {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+
+    filter: blur(16px) brightness(25%);
+  }
+  .np-container {
+    position: absolute;
+    z-index: 2;
     width: 100vw;
     height: 100vh;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
+    flex-direction: row;
+  }
+  .np-data {
+    display: flex;
     flex-direction: column;
   }
-  .album {
-    height: 60%;
+  .np-albumContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  .np-album {
+    height: 50%;
+  }
+  .np-albumName {
+    color: white;
+    flex-shrink: 0;
+    font-size: 2em;
+    text-align: left;
+    margin: 8px;
+    margin-top: 7vh;
+    font-weight: bold;
   }
 
-  .artist {
+  .np-track {
     color: white;
+    flex-shrink: 0;
+    font-size: 4em;
+    text-align: left;
+    margin: 8px;
+    font-weight: bold;
+  }
+  .np-artist {
+    color: white;
+    flex-shrink: 0;
+    font-size: 3em;
+    text-align: left;
+    margin: 8px;
+    font-weight: bold;
   }
 </style>
