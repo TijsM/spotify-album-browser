@@ -4,11 +4,30 @@
   import Like from "./Like.svelte";
 
   const save = (id) => {
-    console.log('clicked', id)
     event.stopPropagation();
     saveAlbum(id);
   };
 </script>
+
+{#if albumData}
+  <div
+    on:click={window.open(albumData.external_urls.spotify)}
+    class="container"
+  >
+    <img src={albumData.images[0].url} alt="album cover" />
+    <div class="meta">
+      <div class="albumContainer">
+        <div class="album">{albumData.artists[0].name}</div>
+        <div class="artist">{albumData.name}</div>
+      </div>
+      <Like
+        clicked={() => {
+          save(albumData.id);
+        }}
+      />
+    </div>
+  </div>
+{/if}
 
 <style>
   .container {
@@ -19,7 +38,7 @@
     margin: auto;
     margin: 25px;
     cursor: pointer;
-    scroll-snap-align: start ;
+    scroll-snap-align: start;
 
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -30,8 +49,8 @@
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   }
 
-  .container:active{
-    background-color:transparent;
+  .container:active {
+    background-color: transparent;
     text-decoration: none;
   }
 
@@ -61,21 +80,3 @@
     align-items: flex-start;
   }
 </style>
-
-{#if albumData}
-  <div
-    on:click={window.open(albumData.external_urls.spotify)}
-    class="container">
-    <img src={albumData.images[0].url} alt="album cover" />
-    <div class="meta">
-      <div class="albumContainer">
-        <div class="album">{albumData.artists[0].name}</div>
-        <div class="artist">{albumData.name}</div>
-      </div>
-      <Like
-        clicked={() => {
-          save(albumData.id);
-        }} />
-    </div>
-  </div>
-{/if}

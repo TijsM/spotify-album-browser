@@ -7,7 +7,16 @@
     const bearer = window.location.href
       .split("#access_token=")[1]
       .split("&token_type")[0];
+
+    const expires_in = parseInt(
+      window.location.href.split("expires_in=")[1],
+      10
+    );
+
+    const expiryDate = new Date(new Date().getTime() + expires_in * 1000);
     localStorage.setItem("bearer-token", bearer);
+    localStorage.setItem("expiry-date", expiryDate);
+
     if (bearer) {
       window.history.pushState("", "", "/");
       window.location.reload();

@@ -6,13 +6,14 @@
     getAlbumsFromUser,
   } from "../lib/fetchSpotify.js";
   import { scrollFullPage } from "../lib/scroll";
-  import Authorize from "./Authorize.svelte";
-  import OnAlbums from "./lists/OnAlbums.svelte";
-  import OnFavoriteArtists from "./lists/OnFavoriteArtists.svelte";
-  import OnMostSavedArtists from "./lists/OnMostSavedArtists.svelte";
-  import OnRecentReleases from "./lists/OnRecentReleases.svelte";
-  import OnGenre from "./lists/OnGenre.svelte";
-  import NoAlbumsFound from "./NoAlbumsFound.svelte";
+  import Authorize from "../components/Authorize.svelte";
+  import OnAlbums from "../components/lists/OnAlbums.svelte";
+  import OnFavoriteArtists from "../components/lists/OnFavoriteArtists.svelte";
+  import OnMostSavedArtists from "../components/lists/OnMostSavedArtists.svelte";
+  import OnRecentReleases from "../components/lists/OnRecentReleases.svelte";
+  import OnGenre from "../components/lists/OnGenre.svelte";
+  import NoAlbumsFound from "../components/NoAlbumsFound.svelte";
+  import Footer from "../components/Footer.svelte";
 
   let isDiscconnected = false;
   let userAlbums = [];
@@ -59,3 +60,5 @@
     />
   {/if}
 {/if}
+
+<Footer />
