@@ -3,6 +3,7 @@
   import Authorize from "../components/Authorize.svelte";
 
   let data;
+  let errorWithFetching = false;
 
   const loadGetNowPlaying = async () => {
     const playingData = await getNowPlaying();
@@ -11,6 +12,10 @@
       name: playingData.item.name,
       artists: playingData.artists,
     };
+
+    if (!playingData.item) {
+      errorWithFetching = true;
+    }
 
     data = album;
   };
@@ -34,7 +39,9 @@
   }, 2500);
 </script>
 
-{#if data}
+{#if errorWithFetching}
+  <Authorize />
+{:else if data}
   <div class="np-container --bgImage: {data.album.images[0].url}">
     <div class="np-albumContainer">
       <img class="np-album" src={data.album.images[0].url} alt="album cover" />
@@ -47,7 +54,7 @@
   </div>
   <img class="np-bgImage" src={data.album.images[0].url} alt="background" />
 {:else}
-  <Authorize />
+  ...
 {/if}
 
 <style>
