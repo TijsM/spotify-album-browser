@@ -1,14 +1,11 @@
-import App from './App.svelte';
+import App from "./App.svelte";
 
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/service-worker.js');
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/service-worker.js");
 }
 
 const app = new App({
-	target: document.body,
-	props: {
-		name: 'world'
-	}
+  target: document.body,
 });
 
 export default app;

@@ -1,13 +1,22 @@
 <script>
-  import AppTitle from "./components/Header.svelte";
-  import Authorize from "./components/Authorize.svelte";
-  import Recommendations from "./components/Recommendations.svelte";
-  import Footer from "./components/Footer.svelte";
-  import LogRocket from 'logrocket';
-  
-  LogRocket.init('tbbppt/spotify-album-browser');
+  import { Router, Route } from "svelte-routing";
 
+  import Home from "./screens/Home.svelte";
+  import NowPlaying from "./screens/NowPlaying.svelte";
+  import Recommendations from "./screens/Recommendations.svelte";
+
+  import LogRocket from "logrocket";
+
+  LogRocket.init("tbbppt/spotify-album-browser");
+
+  export let url = "";
 </script>
+
+<Router {url}>
+  <Route path="now-playing" component={NowPlaying} />
+  <Route path="recommendations" component={Recommendations} />
+  <Route path="/" component={Home} />
+</Router>
 
 <style>
   :global(body) {
@@ -59,8 +68,7 @@
   @media screen and (max-width: 700px) {
     :global(.conversationalHeader) {
       font-size: 4em;
-    margin-bottom: 25px;
-
+      margin-bottom: 25px;
     }
 
     :global(.conversationalContent) {
@@ -78,15 +86,3 @@
     }
   }
 </style>
-
-<main>
-  <AppTitle />
-
-  {#if !localStorage.getItem('bearer-token')}
-    <Authorize />
-  {:else}
-    <Recommendations />
-    <Footer />
-  {/if}
-
-</main>
