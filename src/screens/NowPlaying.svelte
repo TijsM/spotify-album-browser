@@ -1,11 +1,11 @@
 <script>
   import { getNowPlaying } from "../lib/fetchSpotify";
+  import Authorize from "../components/Authorize.svelte";
 
   let data;
 
   const loadGetNowPlaying = async () => {
     const playingData = await getNowPlaying();
-    console.log("data", playingData);
     const album = {
       album: playingData.item.album,
       name: playingData.item.name,
@@ -13,12 +13,10 @@
     };
 
     data = album;
-    console.log(JSON.stringify(album));
   };
 
   const getArtistString = (artists) => {
     let res = "";
-    console.log("arts", artists);
     artists.forEach((artist) => {
       if (res !== "") {
         res = res.concat(", ");
@@ -49,7 +47,8 @@
   </div>
   <img class="np-bgImage" src={data.album.images[0].url} alt="background" />
 {:else}
-  loading{/if}
+  <Authorize />
+{/if}
 
 <style>
   .np-bgImage {
