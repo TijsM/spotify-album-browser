@@ -5,6 +5,7 @@
 
   const loadGetNowPlaying = async () => {
     const playingData = await getNowPlaying();
+    console.log("data", playingData);
     const album = {
       album: playingData.item.album,
       name: playingData.item.name,
