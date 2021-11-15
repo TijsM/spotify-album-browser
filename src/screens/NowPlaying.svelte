@@ -2,6 +2,7 @@
   import { getNowPlaying } from "../lib/fetchSpotify";
   import Authorize from "../components/Authorize.svelte";
   import { tokenIsExpired } from "../lib/tokenIsExpired";
+  import { Link } from "svelte-routing";
 
   let data;
   let expired = false;
@@ -56,7 +57,13 @@
   </div>
   <img class="np-bgImage" src={data.album.images[0].url} alt="background" />
 {:else}
-  ...
+  <div class="np-not-playing">
+    <div class="conversationalContent">
+      Start playing some songs from Spotify. <Link to="/recommendations">
+        <button class="CTA">Start exploring here →</button></Link
+      >
+    </div>
+  </div>
 {/if}
 
 <style>
@@ -121,18 +128,34 @@
     filter: blur(16px) brightness(25%);
     animation: pulse 50s infinite linear;
   }
+
+  .np-not-playing {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 96px;
+  }
+  .CTA {
+    color: white;
+    text-decoration: underline;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    padding: 0px;
+    margin-left: auto;
+  }
   @keyframes pulse {
     0% {
       transform: scale(1) rotate(0deg);
     }
     25% {
-      transform: scale(1.1) rotate(2deg);
+      transform: scale(1.2) rotate(4deg);
     }
     50% {
       transform: scale(1) rotate(0deg);
     }
     75% {
-      transform: scale(0.9) rotate(-2deg);
+      transform: scale(0.8) rotate(-4deg);
     }
     100% {
       transform: scale(1) rotate(0deg);
