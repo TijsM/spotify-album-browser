@@ -22,13 +22,6 @@
     background-color: #2d2525; /* base color: #191414 */
   }
 
-  .albumContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-  }
-
   .album {
     width: 45%;
     height: 32px;
