@@ -44,7 +44,7 @@
 {#if expired}
   <Authorize />
 {:else if data}
-  <div class="np-container --bgImage: {data.album.images[0].url}">
+  <div class="np-container">
     <div class="np-albumContainer">
       <img class="np-album" src={data.album.images[0].url} alt="album cover" />
       <p class="np-albumName">{data.album.name}</p>
@@ -119,30 +119,23 @@
     top: -12vh;
 
     filter: blur(16px) brightness(25%);
-    transform: scale(1);
-    animation: pulse 30s infinite linear;
+    animation: pulse 100s infinite linear;
   }
   @keyframes pulse {
     0% {
       transform: scale(1) rotate(0deg);
     }
-    10% {
-      transform: scale(1.01) rotate(0deg);
-    }
     25% {
-      transform: scale(1.075) rotate(3deg);
+      transform: scale(1.1) rotate(2deg);
     }
     50% {
-      transform: scale(1.15) rotate(6deg);
+      transform: scale(1) rotate(0deg);
     }
     75% {
-      transform: scale(1.075) rotate(0deg);
-    }
-    90% {
-      transform: scale(1.01) rotate(0deg);
+      transform: scale(0.9) rotate(-2deg);
     }
     100% {
-      transform: scale(1);
+      transform: scale(1) rotate(0deg);
     }
   }
 </style>
