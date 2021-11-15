@@ -1,23 +1,25 @@
 <script>
   import { getNowPlaying } from "../lib/fetchSpotify";
   import Authorize from "../components/Authorize.svelte";
+  import { tokenIsExpired } from "../lib/tokenIsExpired";
 
   let data;
-  let errorWithFetching = false;
+  let expired = false;
 
   const loadGetNowPlaying = async () => {
-    const playingData = await getNowPlaying();
-    const album = {
-      album: playingData.item.album,
-      name: playingData.item.name,
-      artists: playingData.artists,
-    };
+    if (tokenIsExpired()) {
+      expired = true;
+    } else {
+      expired = false;
+      const playingData = await getNowPlaying();
+      const album = {
+        album: playingData.item.album,
+        name: playingData.item.name,
+        artists: playingData.artists,
+      };
 
-    if (!playingData.item) {
-      errorWithFetching = true;
+      data = album;
     }
-
-    data = album;
   };
 
   const getArtistString = (artists) => {
@@ -39,7 +41,7 @@
   }, 2500);
 </script>
 
-{#if errorWithFetching}
+{#if expired}
   <Authorize />
 {:else if data}
   <div class="np-container --bgImage: {data.album.images[0].url}">
