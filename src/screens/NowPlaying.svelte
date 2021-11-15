@@ -1,23 +1,25 @@
 <script>
   import { getNowPlaying } from "../lib/fetchSpotify";
   import Authorize from "../components/Authorize.svelte";
+  import { tokenIsExpired } from "../lib/tokenIsExpired";
 
   let data;
-  let errorWithFetching = false;
+  let expired = false;
 
   const loadGetNowPlaying = async () => {
-    const playingData = await getNowPlaying();
-    const album = {
-      album: playingData.item.album,
-      name: playingData.item.name,
-      artists: playingData.artists,
-    };
+    if (tokenIsExpired()) {
+      expired = true;
+    } else {
+      expired = false;
+      const playingData = await getNowPlaying();
+      const album = {
+        album: playingData.item.album,
+        name: playingData.item.name,
+        artists: playingData.artists,
+      };
 
-    if (!playingData.item) {
-      errorWithFetching = true;
+      data = album;
     }
-
-    data = album;
   };
 
   const getArtistString = (artists) => {
@@ -39,7 +41,7 @@
   }, 2500);
 </script>
 
-{#if errorWithFetching}
+{#if expired}
   <Authorize />
 {:else if data}
   <div class="np-container --bgImage: {data.album.images[0].url}">
@@ -58,13 +60,6 @@
 {/if}
 
 <style>
-  .np-bgImage {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-
-    filter: blur(16px) brightness(25%);
-  }
   .np-container {
     position: absolute;
     z-index: 2;
@@ -114,5 +109,40 @@
     text-align: left;
     margin: 8px;
     font-weight: bold;
+  }
+
+  .np-bgImage {
+    position: absolute;
+    width: 125vw;
+    height: 125vh;
+    left: -12vw;
+    top: -12vh;
+
+    filter: blur(16px) brightness(25%);
+    transform: scale(1);
+    animation: pulse 30s infinite linear;
+  }
+  @keyframes pulse {
+    0% {
+      transform: scale(1) rotate(0deg);
+    }
+    10% {
+      transform: scale(1.01) rotate(0deg);
+    }
+    25% {
+      transform: scale(1.075) rotate(3deg);
+    }
+    50% {
+      transform: scale(1.15) rotate(6deg);
+    }
+    75% {
+      transform: scale(1.075) rotate(0deg);
+    }
+    90% {
+      transform: scale(1.01) rotate(0deg);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
 </style>
