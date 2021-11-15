@@ -60,15 +60,6 @@
 {/if}
 
 <style>
-  .np-bgImage {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    left: 0;
-    top: 0;
-
-    filter: blur(16px) brightness(25%);
-  }
   .np-container {
     position: absolute;
     z-index: 2;
@@ -118,5 +109,40 @@
     text-align: left;
     margin: 8px;
     font-weight: bold;
+  }
+
+  .np-bgImage {
+    position: absolute;
+    width: 125vw;
+    height: 125vh;
+    left: -12vw;
+    top: -12vh;
+
+    filter: blur(16px) brightness(25%);
+    transform: scale(1);
+    animation: pulse 30s infinite linear;
+  }
+  @keyframes pulse {
+    0% {
+      transform: scale(1) rotate(0deg);
+    }
+    10% {
+      transform: scale(1.01) rotate(0deg);
+    }
+    25% {
+      transform: scale(1.075) rotate(3deg);
+    }
+    50% {
+      transform: scale(1.15) rotate(6deg);
+    }
+    75% {
+      transform: scale(1.075) rotate(0deg);
+    }
+    90% {
+      transform: scale(1.01) rotate(0deg);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
 </style>
