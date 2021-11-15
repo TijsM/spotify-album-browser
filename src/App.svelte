@@ -12,11 +12,13 @@
   export let url = "";
 </script>
 
-<Router {url}>
-  <Route path="now-playing" component={NowPlaying} />
-  <Route path="recommendations" component={Recommendations} />
-  <Route path="/" component={Home} />
-</Router>
+<main>
+  <Router {url}>
+    <Route path="now-playing" component={NowPlaying} />
+    <Route path="recommendations" component={Recommendations} />
+    <Route path="/" component={Home} />
+  </Router>
+</main>
 
 <style>
   :global(body) {
