@@ -54,7 +54,7 @@ export default {
 
     //Using the .env file
     replace({
-      preventAssignment: true,
+      preventAssignment: false,
       // stringify the object
       __myapp: JSON.stringify({
         env: {
