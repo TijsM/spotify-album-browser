@@ -12,24 +12,13 @@
 
 <footer>
   <div class="conversationalContent">
-    Created by
-    <a href="https://tijsmartens.be" target="_blank">Tijs Martens</a>
-    , let's connect on
-    <a
-      href="https://www.linkedin.com/in/tijs-martens-4043aa136/?locale=en_US"
-      target="_blank">
-      LinkedIn
-    </a>
-    .
-  </div>
-  <br />
-  <div class="conversationalContent">
-    Want to
+    Built by
+    <a href="https://rodi-digital.com" target="_blank">Rodi Digital</a>
+    , open sourced on
     <a
       href="https://github.com/TijsM/spotify-recommendation-engine"
       target="_blank">
-      contribute
+      GitHub
     </a>
-    ?
   </div>
 </footer>
